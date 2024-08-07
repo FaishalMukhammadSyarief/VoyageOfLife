@@ -50,12 +50,25 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+
+    /*  TEST  */
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
+    /*  VIEW MODEL & LIVE DATA  */
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.lifecycle.livedata.ktx)
+
     /*  DAGGER HILT  */
     implementation(libs.hilt.android)
     kapt (libs.hilt.compiler)
+
+    /*  RETROFIT  */
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+
+    /*  GLIDE  */
+    implementation(libs.glide)
 
 }
