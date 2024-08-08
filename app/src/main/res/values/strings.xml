@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Voyage of Life</string>
+
+    <!--  CONTENT DESCRIPTION  -->
+    <string name="cd_background_wallpaper">Background Wallpaper</string>
+
+    <!--  UI  -->
+    <string name="login">Login</string>
+    <string name="or_create_account">Or Create Account</string>
+    <string name="msg_welcome">Known the tales of other\'s voyage through life.</string>
+
 </resources>
