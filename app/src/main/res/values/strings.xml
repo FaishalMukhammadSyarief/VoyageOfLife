@@ -6,7 +6,13 @@
 
     <!--  UI  -->
     <string name="login">Login</string>
+    <string name="register">Register</string>
     <string name="or_create_account">Or Create Account</string>
     <string name="msg_welcome">Known the tales of other\'s voyage through life.</string>
+    <string name="cd_back">Back to previous page</string>
+    <string name="welcome_back">Welcome \nBack!</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="doesnt_have_an_account">Does\'nt have an account?</string>
 
 </resources>

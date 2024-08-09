@@ -2,6 +2,11 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.VoyageOfLife" parent="Theme.Material3.DayNight.NoActionBar">
 
+        <!--  Primary Color  -->
+        <item name="colorPrimary">@color/green</item>
+        <item name="colorPrimaryVariant">@color/green</item>
+        <item name="colorOnPrimary">@color/white</item>
+
         <!--  My Theme  -->
         <item name="android:windowTranslucentStatus">false</item>
         <item name="android:statusBarColor">@color/transparent</item>

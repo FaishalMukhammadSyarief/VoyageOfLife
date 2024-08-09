@@ -1,5 +1,6 @@
 package com.zhalz.voyageoflife.ui
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
@@ -14,11 +15,15 @@ class WelcomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
+        binding.activity = this
+
         WindowCompat.setDecorFitsSystemWindows(window, false)
     }
 
     fun toLogin() {
-
+        val toLogin = Intent(this, LoginActivity::class.java)
+        startActivity(toLogin)
     }
 
     fun toRegister() {
