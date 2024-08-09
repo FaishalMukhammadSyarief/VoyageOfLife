@@ -32,6 +32,7 @@
                 android:layout_marginStart="28dp"
                 android:layout_marginTop="32dp"
                 android:contentDescription="@string/cd_back"
+                android:onClick="@{() -> activity.finish()}"
                 android:src="@drawable/ic_back"
                 app:tint="@color/white" />
 
@@ -118,6 +119,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/register"
                     android:textColor="@color/black"
+                    android:onClick="@{() -> activity.toRegister()}"
                     android:textStyle="bold"
                     tools:ignore="VisualLintButtonSize" />
 
