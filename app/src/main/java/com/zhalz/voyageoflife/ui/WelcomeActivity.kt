@@ -27,7 +27,8 @@ class WelcomeActivity : AppCompatActivity() {
     }
 
     fun toRegister() {
-
+        val toRegis = Intent(this, RegisterActivity::class.java)
+        startActivity(toRegis)
     }
 
 }
