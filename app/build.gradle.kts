@@ -73,4 +73,7 @@ dependencies {
     /*  GLIDE  */
     implementation(libs.glide)
 
+    /*  LOTTIE  */
+    implementation (libs.lottie)
+
 }

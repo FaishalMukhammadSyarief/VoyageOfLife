@@ -32,4 +32,13 @@
         <item name="boxCornerRadiusBottomEnd">15dp</item>
     </style>
 
+    <style name="LoadingScreen">
+        <item name="android:background">@color/blurry</item>
+        <item name="android:translationZ">1dp</item>
+        <item name="android:visibility">gone</item>
+        <item name="lottie_autoPlay">true</item>
+        <item name="lottie_loop">true</item>
+        <item name="lottie_speed">2</item>
+        <item name="lottie_rawRes">@raw/boat</item>
+    </style>
 </resources>
