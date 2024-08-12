@@ -45,7 +45,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun observeLogin() = lifecycleScope.launch {
         viewModel.loginResponse.collect {
-            if (it.error == false) createMessage(this@LoginActivity,"Welcome Back: ${it.data?.name}")
+            if (it.error == false) createMessage(this@LoginActivity, getString(R.string.login_success, it.data?.name))
             else createMessage(this@LoginActivity, it.message)
         }
     }

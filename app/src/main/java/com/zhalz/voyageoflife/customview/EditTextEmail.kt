@@ -6,6 +6,7 @@ import android.text.TextWatcher
 import android.util.AttributeSet
 import android.util.Patterns.EMAIL_ADDRESS
 import com.google.android.material.textfield.TextInputEditText
+import com.zhalz.voyageoflife.R
 
 class EditTextEmail @JvmOverloads constructor(
     context: Context,
@@ -23,7 +24,7 @@ class EditTextEmail @JvmOverloads constructor(
         override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
         override fun afterTextChanged(input: Editable) =
-            if (!EMAIL_ADDRESS.matcher(input).matches()) setError("Please enter a valid email address", null)
+            if (!EMAIL_ADDRESS.matcher(input).matches()) setError(context.getString(R.string.email_error), null)
             else setError(null)
 
     })

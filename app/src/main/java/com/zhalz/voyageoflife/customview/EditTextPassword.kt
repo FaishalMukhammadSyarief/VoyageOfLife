@@ -5,6 +5,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.AttributeSet
 import com.google.android.material.textfield.TextInputEditText
+import com.zhalz.voyageoflife.R
 
 class EditTextPassword @JvmOverloads constructor(
     context: Context,
@@ -22,7 +23,7 @@ class EditTextPassword @JvmOverloads constructor(
         override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
         override fun afterTextChanged(input: Editable) =
-            if (input.length < 8) setError("Password must contain 8 characters", null)
+            if (input.length < 8) setError(context.getString(R.string.password_error), null)
             else setError(null)
 
     })
