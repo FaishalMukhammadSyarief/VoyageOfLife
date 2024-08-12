@@ -69,7 +69,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/email"
-                app:startIconDrawable="@drawable/ic_lock">
+                app:startIconDrawable="@drawable/ic_email">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_email"
@@ -82,14 +82,16 @@
 
             <!-- Password -->
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/etl_password"
                 style="@style/CustomEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/password"
                 app:endIconMode="password_toggle"
+                app:errorEnabled="true"
                 app:startIconDrawable="@drawable/ic_lock">
 
-                <com.google.android.material.textfield.TextInputEditText
+                <com.zhalz.voyageoflife.customview.EditTextPassword
                     android:id="@+id/et_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
