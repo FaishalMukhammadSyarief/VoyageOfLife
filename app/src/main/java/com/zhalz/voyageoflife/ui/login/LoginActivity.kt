@@ -2,7 +2,6 @@ package com.zhalz.voyageoflife.ui.login
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -42,22 +41,16 @@ class LoginActivity : AppCompatActivity() {
                 is ApiResult.Success -> {
                     val username = it.data?.data?.name
                     createMessage(this@LoginActivity, getString(R.string.login_success, username))
-                    isLoading(false)
+                    binding.isLoading = false
                 }
                 is ApiResult.Error -> {
                     createMessage(this@LoginActivity, it.message)
-                    isLoading(false)
+                    binding.isLoading = false
                 }
-                is ApiResult.Loading -> isLoading(true)
+                is ApiResult.Loading -> binding.isLoading = true
             }
         }
     }
-
-    private fun isLoading(loading: Boolean) =
-        when (loading) {
-            true -> binding.animLoading.visibility = View.VISIBLE
-            false -> binding.animLoading.visibility = View.GONE
-        }
 
     fun toRegister() {
         val toRegister = Intent(this, RegisterActivity::class.java)

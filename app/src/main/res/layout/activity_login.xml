@@ -13,6 +13,12 @@
             name="viewmodel"
             type="com.zhalz.voyageoflife.ui.login.LoginViewModel" />
 
+        <variable
+            name="isLoading"
+            type="Boolean" />
+
+        <import type="android.view.View" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -26,7 +32,8 @@
             style="@style/LoadingScreen"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="100dp" />
+            android:padding="100dp"
+            android:visibility="@{isLoading ? View.VISIBLE : View.GONE}" />
 
         <LinearLayout
             android:id="@+id/container_title"
@@ -44,6 +51,7 @@
                 android:layout_marginStart="28dp"
                 android:layout_marginTop="32dp"
                 android:contentDescription="@string/cd_back"
+                android:enabled="@{isLoading ? false : true}"
                 android:onClick="@{() -> activity.finish()}"
                 android:src="@drawable/ic_back"
                 app:tint="@color/white" />
@@ -84,6 +92,7 @@
                     android:id="@+id/et_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:enabled="@{isLoading ? false : true}"
                     android:inputType="textEmailAddress"
                     android:text="@={viewmodel.email}"
                     tools:ignore="TextContrastCheck,VisualLintTextFieldSize" />
@@ -104,6 +113,7 @@
                     android:id="@+id/et_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:enabled="@{isLoading ? false : true}"
                     android:inputType="textPassword"
                     android:text="@={viewmodel.password}"
                     tools:ignore="TextContrastCheck,VisualLintTextFieldSize" />
@@ -114,6 +124,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
+                android:enabled="@{isLoading ? false : true}"
                 android:onClick="@{() -> viewmodel.login()}"
                 android:text="@string/login"
                 android:textColor="@color/white"
@@ -135,6 +146,7 @@
                     style="@style/Widget.Material3.Button.TextButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:enabled="@{isLoading ? false : true}"
                     android:onClick="@{() -> activity.toRegister()}"
                     android:text="@string/register"
                     android:textColor="@color/black"
