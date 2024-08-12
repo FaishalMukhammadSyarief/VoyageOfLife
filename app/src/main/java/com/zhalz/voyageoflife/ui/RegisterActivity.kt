@@ -9,6 +9,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.databinding.DataBindingUtil
 import com.zhalz.voyageoflife.R
 import com.zhalz.voyageoflife.databinding.ActivityRegisterBinding
+import com.zhalz.voyageoflife.ui.login.LoginActivity
 
 class RegisterActivity : AppCompatActivity() {
 

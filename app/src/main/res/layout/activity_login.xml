@@ -7,7 +7,11 @@
 
         <variable
             name="activity"
-            type="com.zhalz.voyageoflife.ui.LoginActivity" />
+            type="com.zhalz.voyageoflife.ui.login.LoginActivity" />
+
+        <variable
+            name="viewmodel"
+            type="com.zhalz.voyageoflife.ui.login.LoginViewModel" />
 
     </data>
 
@@ -59,7 +63,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/container_title">
 
-            <!-- Phone Number -->
+            <!-- EMAIL -->
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/CustomEditText"
                 android:layout_width="match_parent"
@@ -72,6 +76,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textEmailAddress"
+                    android:text="@={viewmodel.email}"
                     tools:ignore="TextContrastCheck,VisualLintTextFieldSize" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -89,6 +94,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
+                    android:text="@={viewmodel.password}"
                     tools:ignore="TextContrastCheck,VisualLintTextFieldSize" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -97,6 +103,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
+                android:onClick="@{() -> viewmodel.login()}"
                 android:text="@string/login"
                 android:textColor="@color/white"
                 tools:ignore="VisualLintButtonSize" />

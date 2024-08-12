@@ -37,6 +37,7 @@ android {
     }
     buildFeatures {
         dataBinding = true
+        buildConfig = true
     }
     kapt {
         correctErrorTypes = true
@@ -67,6 +68,7 @@ dependencies {
     /*  RETROFIT  */
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
+    implementation(libs.logging.interceptor)
 
     /*  GLIDE  */
     implementation(libs.glide)

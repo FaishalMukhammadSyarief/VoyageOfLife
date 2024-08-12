@@ -7,6 +7,7 @@ import androidx.core.view.WindowCompat
 import androidx.databinding.DataBindingUtil
 import com.zhalz.voyageoflife.R
 import com.zhalz.voyageoflife.databinding.ActivityWelcomeBinding
+import com.zhalz.voyageoflife.ui.login.LoginActivity
 
 class WelcomeActivity : AppCompatActivity() {
 
