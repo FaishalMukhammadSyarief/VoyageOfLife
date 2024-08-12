@@ -1,4 +1,4 @@
-package com.zhalz.voyageoflife.injection
+package com.zhalz.voyageoflife.di
 
 import com.zhalz.voyageoflife.BuildConfig
 import com.zhalz.voyageoflife.data.remote.ApiService
@@ -13,12 +13,12 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 @InstallIn(SingletonComponent::class)
 @Module
-class AppModule {
+class ApiModule {
 
     @Provides
-    fun provideApiService(): ApiService {
+    fun provideApiService() : ApiService {
         val loggingInterceptor =
-            if(BuildConfig.DEBUG) HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+            if (BuildConfig.DEBUG) HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
             else HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.NONE)
 
         val client =

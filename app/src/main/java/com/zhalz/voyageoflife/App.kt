@@ -1,4 +1,4 @@
-package com.zhalz.voyageoflife.base
+package com.zhalz.voyageoflife
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
