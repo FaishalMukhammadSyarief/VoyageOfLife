@@ -33,6 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="100dp"
+            android:background="@color/blurry"
             android:visibility="@{isLoading ? View.VISIBLE : View.GONE}" />
 
         <LinearLayout

@@ -38,7 +38,6 @@
     </style>
 
     <style name="LoadingScreen">
-        <item name="android:background">@color/blurry</item>
         <item name="android:translationZ">1dp</item>
         <item name="android:visibility">gone</item>
         <item name="lottie_autoPlay">true</item>
