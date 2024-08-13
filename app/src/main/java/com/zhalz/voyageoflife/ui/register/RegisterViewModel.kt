@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.zhalz.voyageoflife.data.remote.response.RegisterResponse
-import com.zhalz.voyageoflife.data.repository.AuthRepository
+import com.zhalz.voyageoflife.data.repository.auth.AuthRepository
 import com.zhalz.voyageoflife.utils.ApiResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow

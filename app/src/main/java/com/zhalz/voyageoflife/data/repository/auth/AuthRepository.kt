@@ -1,4 +1,4 @@
-package com.zhalz.voyageoflife.data.repository
+package com.zhalz.voyageoflife.data.repository.auth
 
 import com.zhalz.voyageoflife.data.remote.response.LoginResponse
 import com.zhalz.voyageoflife.data.remote.response.RegisterResponse

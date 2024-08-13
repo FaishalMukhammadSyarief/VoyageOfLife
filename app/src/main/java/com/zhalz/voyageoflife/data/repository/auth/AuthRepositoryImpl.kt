@@ -1,11 +1,10 @@
-package com.zhalz.voyageoflife.data.repository.impl
+package com.zhalz.voyageoflife.data.repository.auth
 
 import com.google.gson.Gson
 import com.zhalz.voyageoflife.data.remote.ApiService
 import com.zhalz.voyageoflife.data.remote.response.ErrorResponse
 import com.zhalz.voyageoflife.data.remote.response.LoginResponse
 import com.zhalz.voyageoflife.data.remote.response.RegisterResponse
-import com.zhalz.voyageoflife.data.repository.AuthRepository
 import com.zhalz.voyageoflife.utils.ApiResult
 import retrofit2.HttpException
 import javax.inject.Inject
