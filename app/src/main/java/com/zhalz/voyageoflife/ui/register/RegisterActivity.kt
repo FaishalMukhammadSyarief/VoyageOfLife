@@ -1,6 +1,5 @@
 package com.zhalz.voyageoflife.ui.register
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
@@ -11,6 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import com.zhalz.voyageoflife.R
 import com.zhalz.voyageoflife.databinding.ActivityRegisterBinding
 import com.zhalz.voyageoflife.ui.login.LoginActivity
+import com.zhalz.voyageoflife.utils.ActivityOpener.openActivity
 import com.zhalz.voyageoflife.utils.ApiResult
 import com.zhalz.voyageoflife.utils.Message.createMessage
 import dagger.hilt.android.AndroidEntryPoint
@@ -53,9 +53,7 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     fun toLogin() {
-        val toLogin = Intent(this, LoginActivity::class.java)
-        startActivity(toLogin)
-        finish()
+        openActivity(LoginActivity::class.java, true)
     }
 
 }

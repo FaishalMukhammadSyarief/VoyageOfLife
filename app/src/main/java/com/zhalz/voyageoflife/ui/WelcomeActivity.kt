@@ -20,17 +20,10 @@ class WelcomeActivity : AppCompatActivity() {
 
         binding.activity = this
 
+        binding.login = Intent(this, LoginActivity::class.java)
+        binding.register = Intent(this, RegisterActivity::class.java)
+
         WindowCompat.setDecorFitsSystemWindows(window, false)
-    }
-
-    fun toLogin() {
-        val toLogin = Intent(this, LoginActivity::class.java)
-        startActivity(toLogin)
-    }
-
-    fun toRegister() {
-        val toRegis = Intent(this, RegisterActivity::class.java)
-        startActivity(toRegis)
     }
 
 }
