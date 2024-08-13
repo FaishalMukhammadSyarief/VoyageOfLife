@@ -13,7 +13,7 @@ import com.zhalz.voyageoflife.ui.home.HomeActivity
 import com.zhalz.voyageoflife.ui.register.RegisterActivity
 import com.zhalz.voyageoflife.utils.ActivityOpener.openActivity
 import com.zhalz.voyageoflife.utils.ApiResult
-import com.zhalz.voyageoflife.utils.Message.createMessage
+import com.zhalz.voyageoflife.utils.ToastMaker.toast
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -40,12 +40,12 @@ class LoginActivity : AppCompatActivity() {
         viewModel.loginResponse.collect {
             when(it) {
                 is ApiResult.Success -> {
-                    createMessage(this@LoginActivity, getString(R.string.login_success, it.data?.data?.name))
+                    toast(R.string.login_success, it.data?.data?.name)
                     binding.isLoading = false
                     openActivity(HomeActivity::class.java, finishAll = true)
                 }
                 is ApiResult.Error -> {
-                    createMessage(this@LoginActivity, it.message)
+                    toast(it.message)
                     binding.isLoading = false
                 }
                 is ApiResult.Loading -> binding.isLoading = true

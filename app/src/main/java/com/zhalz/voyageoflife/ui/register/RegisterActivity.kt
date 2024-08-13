@@ -12,7 +12,7 @@ import com.zhalz.voyageoflife.databinding.ActivityRegisterBinding
 import com.zhalz.voyageoflife.ui.login.LoginActivity
 import com.zhalz.voyageoflife.utils.ActivityOpener.openActivity
 import com.zhalz.voyageoflife.utils.ApiResult
-import com.zhalz.voyageoflife.utils.Message.createMessage
+import com.zhalz.voyageoflife.utils.ToastMaker.toast
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -39,12 +39,12 @@ class RegisterActivity : AppCompatActivity() {
         viewModel.registerResponse.collect {
             when(it) {
                 is ApiResult.Success -> {
-                    createMessage(this@RegisterActivity, getString(R.string.register_success, it.data?.message))
+                    toast(R.string.register_success, it.data?.message)
                     binding.isLoading = false
                     toLogin()
                 }
                 is ApiResult.Error -> {
-                    createMessage(this@RegisterActivity, it.message)
+                    toast(it.message)
                     binding.isLoading = false
                 }
                 is ApiResult.Loading -> binding.isLoading = true

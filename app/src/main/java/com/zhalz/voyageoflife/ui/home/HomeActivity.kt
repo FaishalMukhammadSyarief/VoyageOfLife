@@ -13,7 +13,7 @@ import com.zhalz.voyageoflife.data.remote.response.StoryData
 import com.zhalz.voyageoflife.databinding.ActivityHomeBinding
 import com.zhalz.voyageoflife.ui.adapter.StoryAdapter
 import com.zhalz.voyageoflife.utils.ApiResult
-import com.zhalz.voyageoflife.utils.Message.createMessage
+import com.zhalz.voyageoflife.utils.ToastMaker.toast
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -51,7 +51,7 @@ class HomeActivity : AppCompatActivity() {
                     binding.isLoading = false
                 }
                 is ApiResult.Error -> {
-                    createMessage(this@HomeActivity, it.message)
+                    toast(it.message)
                     binding.isLoading = false
                 }
                 is ApiResult.Loading -> binding.isLoading = true
@@ -60,7 +60,7 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun toDetail(data: StoryData) {
-        createMessage(this, data.description)
+        toast(data.description)
     }
 
     override fun onStart() {
