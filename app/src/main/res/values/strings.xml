@@ -27,4 +27,7 @@
     <string name="login_success">Welcome Back %1$s!</string>
     <string name="register_success">%1$s, Please login to continue</string>
 
+    <string name="placeholder_name">Faishal Mukhammad Syarief</string>
+    <string name="placeholder_date">26 October 2006</string>
+
 </resources>
