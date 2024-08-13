@@ -4,6 +4,16 @@
 
     <data>
 
+        <variable
+            name="storyAdapter"
+            type="com.zhalz.voyageoflife.ui.adapter.StoryAdapter" />
+
+        <variable
+            name="isLoading"
+            type="Boolean" />
+
+        <import type="android.view.View" />
+
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -35,10 +45,19 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:padding="8dp"
+            android:adapter="@{storyAdapter}"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             app:spanCount="1"
             tools:listitem="@layout/item_story"/>
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/anim_loading"
+            style="@style/LoadingScreen"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="100dp"
+            android:visibility="@{isLoading ? View.VISIBLE : View.GONE}" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

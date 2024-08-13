@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
 import com.zhalz.voyageoflife.R
 import com.zhalz.voyageoflife.databinding.ActivityLoginBinding
+import com.zhalz.voyageoflife.ui.home.HomeActivity
 import com.zhalz.voyageoflife.ui.register.RegisterActivity
 import com.zhalz.voyageoflife.utils.ApiResult
 import com.zhalz.voyageoflife.utils.Message.createMessage
@@ -41,6 +42,7 @@ class LoginActivity : AppCompatActivity() {
                 is ApiResult.Success -> {
                     val username = it.data?.data?.name
                     createMessage(this@LoginActivity, getString(R.string.login_success, username))
+                    toHome()
                     binding.isLoading = false
                 }
                 is ApiResult.Error -> {
@@ -55,6 +57,12 @@ class LoginActivity : AppCompatActivity() {
     fun toRegister() {
         val toRegister = Intent(this, RegisterActivity::class.java)
         startActivity(toRegister)
+        finish()
+    }
+
+    private fun toHome() {
+        val toHome = Intent(this, HomeActivity::class.java)
+        startActivity(toHome)
         finish()
     }
 
