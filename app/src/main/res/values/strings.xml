@@ -4,6 +4,7 @@
     <!--  CONTENT DESCRIPTION  -->
     <string name="cd_background_wallpaper">Background Wallpaper</string>
     <string name="cd_back">Back to previous page</string>
+    <string name="cd_image_story">Image Story</string>
 
     <!--  UI  -->
     <string name="login">Login</string>

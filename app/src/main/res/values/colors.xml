@@ -8,6 +8,7 @@
 
     <!--  Transparent Color  -->
     <color name="transparent">#00FFFFFF</color>
+    <color name="semi_transparent_white">#BFFFFFFF</color>
     <color name="blurry">#BF272727</color>
 
     <!--  Special Component  -->

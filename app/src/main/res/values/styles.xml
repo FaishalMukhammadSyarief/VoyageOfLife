@@ -8,6 +8,11 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="TextTitle.ToolbarTitle">
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">@font/varela_round_regular</item>
+    </style>
+
     <style name="ThemeOverlay.Material3.Button.TextButton.CustomButton">
         <item name="android:textStyle">bold</item>
         <item name="cornerRadius">10dp</item>
@@ -41,4 +46,5 @@
         <item name="lottie_speed">2</item>
         <item name="lottie_rawRes">@raw/boat</item>
     </style>
+
 </resources>
