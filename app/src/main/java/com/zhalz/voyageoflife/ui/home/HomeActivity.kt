@@ -41,6 +41,11 @@ class HomeActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        binding.swipeRefresh.setOnRefreshListener {
+            binding.swipeRefresh.isRefreshing = true
+            viewModel.getStories()
+        }
     }
 
     private fun collectStories() = lifecycleScope.launch {
@@ -48,13 +53,13 @@ class HomeActivity : AppCompatActivity() {
             when (it) {
                 is ApiResult.Success -> {
                     storyAdapter.submitList(it.data?.listStory)
-                    binding.isLoading = false
+                    binding.swipeRefresh.isRefreshing = false
                 }
                 is ApiResult.Error -> {
                     toast(it.message)
-                    binding.isLoading = false
+                    binding.swipeRefresh.isRefreshing = false
                 }
-                is ApiResult.Loading -> binding.isLoading = true
+                is ApiResult.Loading -> binding.swipeRefresh.isRefreshing = true
             }
         }
     }

@@ -76,4 +76,7 @@ dependencies {
     /*  LOTTIE  */
     implementation (libs.lottie)
 
+    /*  SWIPE REFRESH  */
+    implementation (libs.androidx.swiperefreshlayout)
+
 }
