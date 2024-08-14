@@ -1,7 +1,10 @@
 package com.zhalz.voyageoflife.data.remote.response
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class StoryData(
 
     @field:SerializedName("photoUrl")
@@ -25,4 +28,4 @@ data class StoryData(
     @field:SerializedName("lat")
     val lat: Double? = null
 
-)
+) : Parcelable

@@ -53,7 +53,7 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     fun toLogin() {
-        openActivity(LoginActivity::class.java, true)
+        openActivity<LoginActivity>(true)
     }
 
 }

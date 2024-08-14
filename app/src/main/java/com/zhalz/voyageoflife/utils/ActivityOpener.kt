@@ -6,12 +6,12 @@ import android.content.Intent
 
 object ActivityOpener {
 
-    fun Context.openActivity(
-        activity: Class<out Activity>,
+    inline fun <reified T : Activity> Context.openActivity(
         finish: Boolean = false,
-        finishAll: Boolean = false
+        finishAll: Boolean = false,
+        extraData: Intent.() -> Unit = {}
     ) {
-        val destination = Intent(this, activity)
+        val destination = Intent(this, T::class.java).apply(extraData)
         startActivity(destination)
 
         if (this !is Activity) return

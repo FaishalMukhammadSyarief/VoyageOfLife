@@ -42,7 +42,7 @@ class LoginActivity : AppCompatActivity() {
                 is ApiResult.Success -> {
                     toast(R.string.login_success, it.data?.data?.name)
                     binding.isLoading = false
-                    openActivity(HomeActivity::class.java, finishAll = true)
+                    openActivity<HomeActivity>(finishAll = true)
                 }
                 is ApiResult.Error -> {
                     toast(it.message)
@@ -54,7 +54,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     fun toRegister() {
-        openActivity(RegisterActivity::class.java, true)
+        openActivity<RegisterActivity>(true)
     }
 
 }

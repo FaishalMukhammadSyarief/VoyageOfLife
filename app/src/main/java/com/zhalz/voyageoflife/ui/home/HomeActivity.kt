@@ -12,7 +12,10 @@ import com.zhalz.voyageoflife.R
 import com.zhalz.voyageoflife.data.remote.response.StoryData
 import com.zhalz.voyageoflife.databinding.ActivityHomeBinding
 import com.zhalz.voyageoflife.ui.adapter.StoryAdapter
+import com.zhalz.voyageoflife.ui.detail.DetailActivity
+import com.zhalz.voyageoflife.utils.ActivityOpener.openActivity
 import com.zhalz.voyageoflife.utils.ApiResult
+import com.zhalz.voyageoflife.utils.Const.Parcel.EXTRA_USER
 import com.zhalz.voyageoflife.utils.ToastMaker.toast
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -64,9 +67,8 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
-    private fun toDetail(data: StoryData) {
-        toast(data.description)
-    }
+    private fun toDetail(data: StoryData) =
+        openActivity<DetailActivity> { putExtra(EXTRA_USER, data) }
 
     override fun onStart() {
         super.onStart()

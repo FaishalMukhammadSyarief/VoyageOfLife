@@ -10,6 +10,7 @@
     <color name="transparent">#00FFFFFF</color>
     <color name="blurry">#BF272727</color>
     <color name="semi_transparent_black">#80000000</color>
+    <color name="semi_transparent_white">#80FFFFFF</color>
 
     <!--  Special Component  -->
     <color name="always_white">#FFFFFFFF</color>
