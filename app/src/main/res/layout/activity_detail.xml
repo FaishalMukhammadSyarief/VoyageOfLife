@@ -30,7 +30,7 @@
             <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:layout_width="match_parent"
                 android:layout_height="440dp"
-                app:contentScrim="@color/green"
+                app:contentScrim="@color/transparent"
                 app:layout_scrollFlags="scroll|snap|exitUntilCollapsed">
 
                 <com.google.android.material.imageview.ShapeableImageView
@@ -42,7 +42,7 @@
                     android:fitsSystemWindows="true"
                     android:scaleType="centerCrop"
                     app:layout_collapseMode="none"
-                    app:shapeAppearance="@style/RoundCorner"
+                    app:shapeAppearance="@style/RoundBottomCorner"
                     tools:src="@drawable/deer" />
 
                 <com.google.android.material.appbar.MaterialToolbar
@@ -63,45 +63,61 @@
             android:layout_height="match_parent"
             android:elevation="5dp"
             android:fillViewport="true"
-            android:padding="16dp"
+            android:padding="32dp"
             app:layout_anchor="@id/app_bar_layout"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/tv_description"
+                style="@style/TextDescription"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/tv_title"
-                    style="@style/TextTitle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@{storyData.name}"
-                    tools:text="@string/placeholder_name" />
-
-                <TextView
-                    android:id="@+id/tv_subtitle"
-                    style="@style/TextSubtitle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@{storyData.createdAt}"
-                    tools:text="@string/placeholder_date" />
-
-                <View style="@style/Divider" />
-
-                <TextView
-                    android:id="@+id/tv_description"
-                    style="@style/TextDescription"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@{storyData.description}"
-                    tools:ignore="VisualLintLongText"
-                    tools:text="@tools:sample/lorem/random" />
-
-            </LinearLayout>
+                android:layout_height="match_parent"
+                android:layout_marginTop="12dp"
+                android:text="@{storyData.description}"
+                tools:ignore="VisualLintLongText"
+                tools:text="@tools:sample/lorem/random" />
 
         </androidx.core.widget.NestedScrollView>
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:clickable="false"
+            android:maxLength="15"
+            android:text="@{storyData.name}"
+            android:textAppearance="@style/TextTitle.FabTitle"
+            android:textColor="@color/green"
+            app:icon="@drawable/ic_circular_user"
+            app:iconSize="28dp"
+            app:iconTint="@color/green"
+            app:layout_anchor="@id/app_bar_layout"
+            app:layout_anchorGravity="center|bottom"
+            app:shapeAppearance="@style/RoundCorner"
+            tools:ignore="ImageContrastCheck,VisualLintOverlap"
+            tools:text="123456789012345" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            style="@style/CustomFab"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_marginEnd="36dp"
+            android:contentDescription="@string/cd_save_story"
+            android:src="@drawable/ic_bookmark"
+            app:layout_anchor="@id/app_bar_layout"
+            app:layout_anchorGravity="bottom|end"
+            tools:ignore="ImageContrastCheck" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            style="@style/CustomFab"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_marginStart="36dp"
+            android:contentDescription="@string/cd_share"
+            android:src="@drawable/ic_share"
+            app:layout_anchor="@id/app_bar_layout"
+            app:layout_anchorGravity="bottom|start"
+            tools:ignore="ImageContrastCheck" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

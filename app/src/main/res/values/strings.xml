@@ -5,6 +5,8 @@
     <string name="cd_background_wallpaper">Background Wallpaper</string>
     <string name="cd_back">Back to previous page</string>
     <string name="cd_image_story">Image Story</string>
+    <string name="cd_share">Share Story</string>
+    <string name="cd_save_story">Save Story</string>
 
     <!--  UI  -->
     <string name="login">Login</string>
@@ -27,7 +29,7 @@
     <string name="login_success">Welcome Back %1$s!</string>
     <string name="register_success">%1$s, Please login to continue</string>
 
-    <string name="placeholder_name">Faishal Mukhammad Syarief</string>
+    <string name="placeholder_name">Faishal</string>
     <string name="placeholder_date">26 October 2006</string>
 
 </resources>
