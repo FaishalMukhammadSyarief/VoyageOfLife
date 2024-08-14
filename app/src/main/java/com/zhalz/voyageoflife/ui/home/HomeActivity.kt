@@ -56,6 +56,7 @@ class HomeActivity : AppCompatActivity() {
             when (it) {
                 is ApiResult.Success -> {
                     storyAdapter.submitList(it.data?.listStory)
+                    binding.storyAdapter = storyAdapter
                     binding.swipeRefresh.isRefreshing = false
                 }
                 is ApiResult.Error -> {
