@@ -1,9 +1,9 @@
-package com.zhalz.voyageoflife.data.repository.stories
+package com.zhalz.voyageoflife.data.repository.story
 
 import com.zhalz.voyageoflife.data.remote.response.StoriesResponse
 import com.zhalz.voyageoflife.utils.ApiResult
 
-interface StoriesRepository {
+interface StoryRepository {
 
     suspend fun getStories() : ApiResult<StoriesResponse>
 

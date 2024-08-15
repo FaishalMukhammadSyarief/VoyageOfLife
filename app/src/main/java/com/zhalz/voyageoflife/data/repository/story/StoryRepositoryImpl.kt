@@ -1,4 +1,4 @@
-package com.zhalz.voyageoflife.data.repository.stories
+package com.zhalz.voyageoflife.data.repository.story
 
 import com.google.gson.Gson
 import com.zhalz.voyageoflife.data.remote.ApiService
@@ -8,7 +8,7 @@ import com.zhalz.voyageoflife.utils.ApiResult
 import retrofit2.HttpException
 import javax.inject.Inject
 
-class StoriesRepositoryImpl @Inject constructor(private val apiService: ApiService) : StoriesRepository {
+class StoryRepositoryImpl @Inject constructor(private val apiService: ApiService) : StoryRepository {
 
     override suspend fun getStories(): ApiResult<StoriesResponse> {
         return try {
