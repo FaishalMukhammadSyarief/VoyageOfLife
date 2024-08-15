@@ -1,5 +1,6 @@
 package com.zhalz.voyageoflife.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
@@ -13,6 +14,7 @@ import com.zhalz.voyageoflife.data.remote.response.StoryData
 import com.zhalz.voyageoflife.databinding.ActivityHomeBinding
 import com.zhalz.voyageoflife.ui.adapter.StoryAdapter
 import com.zhalz.voyageoflife.ui.detail.DetailActivity
+import com.zhalz.voyageoflife.ui.upload.UploadActivity
 import com.zhalz.voyageoflife.utils.ActivityOpener.openActivity
 import com.zhalz.voyageoflife.utils.ApiResult
 import com.zhalz.voyageoflife.utils.Const.Parcel.EXTRA_USER
@@ -32,7 +34,9 @@ class HomeActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_home)
 
+        binding.activity = this
         binding.storyAdapter = storyAdapter
+        binding.upload = Intent(this, UploadActivity::class.java)
 
         initUI()
         collectStories()

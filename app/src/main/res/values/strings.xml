@@ -7,6 +7,10 @@
     <string name="cd_image_story">Image Story</string>
     <string name="cd_share">Share Story</string>
     <string name="cd_save_story">Save Story</string>
+    <string name="cd_upload_story">Upload Story</string>
+    <string name="cd_open_camera">Open Camera</string>
+    <string name="cd_open_gallery">Open Gallery</string>
+    <string name="cd_add_story">Add Story</string>
 
     <!--  UI  -->
     <string name="login">Login</string>
@@ -22,6 +26,7 @@
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="confirm_password">Confirm Password</string>
+    <string name="description">Description</string>
 
     <!--  MESSAGE  -->
     <string name="email_error">Please enter a valid email address</string>

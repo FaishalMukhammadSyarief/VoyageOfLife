@@ -16,7 +16,7 @@
         android:theme="@style/Theme.VoyageOfLife"
         tools:targetApi="31">
         <activity
-            android:name=".ui.upload.UpdateActivity"
+            android:name=".ui.upload.UploadActivity"
             android:exported="false" />
         <activity
             android:name=".ui.detail.DetailActivity"
