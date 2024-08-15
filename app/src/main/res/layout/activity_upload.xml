@@ -8,6 +8,10 @@
             name="activity"
             type="com.zhalz.voyageoflife.ui.upload.UploadActivity" />
 
+        <variable
+            name="viewmodel"
+            type="com.zhalz.voyageoflife.ui.upload.UploadViewModel" />
+
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -73,6 +77,7 @@
                     android:id="@+id/ed_register_name"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:text="@={activity.description}"
                     android:inputType="text"
                     android:gravity="top"
                     tools:ignore="TextContrastCheck,VisualLintTextFieldSize" />
