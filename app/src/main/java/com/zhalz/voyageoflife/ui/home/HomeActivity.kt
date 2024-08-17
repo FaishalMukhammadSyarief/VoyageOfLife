@@ -56,7 +56,7 @@ class HomeActivity : AppCompatActivity() {
             viewModel.getStories()
         }
 
-        binding.toolbar.menu.findItem(R.id.menu_logout).setOnMenuItemClickListener {
+        binding.toolbar.menu.findItem(R.id.action_logout).setOnMenuItemClickListener {
             showDialog(getString(R.string.logout), getString(R.string.msg_logout)) { logout() }
             true
         }

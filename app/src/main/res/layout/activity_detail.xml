@@ -34,7 +34,7 @@
                 app:layout_scrollFlags="scroll|snap|exitUntilCollapsed">
 
                 <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/iv_image"
+                    android:id="@+id/iv_detail_photo"
                     imageUrl="@{storyData.photoUrl}"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -68,7 +68,7 @@
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <TextView
-                android:id="@+id/tv_description"
+                android:id="@+id/tv_detail_description"
                 style="@style/TextDescription"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -80,6 +80,7 @@
         </androidx.core.widget.NestedScrollView>
 
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/fab_detail_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/white"
