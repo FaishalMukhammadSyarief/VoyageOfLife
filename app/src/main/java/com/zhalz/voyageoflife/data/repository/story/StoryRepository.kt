@@ -8,6 +8,6 @@ import java.io.File
 interface StoryRepository {
 
     suspend fun getStories() : ApiResult<StoriesResponse>
-    suspend fun uploadStories(description: String, image: File?) : ApiResult<UploadResponse>
+    suspend fun uploadStories(description: String, image: File) : ApiResult<UploadResponse>
 
 }

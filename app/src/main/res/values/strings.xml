@@ -37,5 +37,6 @@
     <string name="placeholder_name">Faishal</string>
     <string name="placeholder_date">26 October 2006</string>
     <string name="permission_not_granted">Permission not Granted</string>
+    <string name="please_select_an_image">Please select an image</string>
 
 </resources>

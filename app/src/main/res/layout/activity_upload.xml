@@ -12,6 +12,12 @@
             name="viewmodel"
             type="com.zhalz.voyageoflife.ui.upload.UploadViewModel" />
 
+        <variable
+            name="isLoading"
+            type="Boolean" />
+
+        <import type="android.view.View" />
+
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -20,6 +26,25 @@
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
         tools:context=".ui.detail.DetailActivity">
+
+        <FrameLayout
+            style="@style/LoadingScreen"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/blurry"
+            android:fitsSystemWindows="true"
+            android:translationZ="100dp"
+            android:visibility="@{isLoading ? View.VISIBLE : View.GONE}">
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/anim_loading"
+                style="@style/LoadingScreen"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="100dp"
+                android:visibility="visible" />
+
+        </FrameLayout>
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/app_bar_layout"
@@ -40,9 +65,9 @@
                     android:contentDescription="@string/cd_image_story"
                     android:fitsSystemWindows="true"
                     android:scaleType="centerCrop"
+                    android:src="@drawable/goblin"
                     app:layout_collapseMode="none"
-                    app:shapeAppearance="@style/RoundBottomCorner"
-                    android:src="@drawable/goblin" />
+                    app:shapeAppearance="@style/RoundBottomCorner" />
 
                 <com.google.android.material.appbar.MaterialToolbar
                     android:id="@+id/toolbar"
@@ -71,15 +96,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="12dp"
-                android:hint="@string/description">
+                android:hint="@string/description"
+                app:endIconMode="none">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/ed_register_name"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="@={activity.description}"
-                    android:inputType="text"
+                    android:enabled="@{isLoading ? false : true}"
                     android:gravity="top"
+                    android:inputType="text"
+                    android:text="@={activity.description}"
                     tools:ignore="TextContrastCheck,VisualLintTextFieldSize" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -90,6 +117,8 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@color/white"
             android:contentDescription="@string/cd_upload_story"
+            android:enabled="@{isLoading ? false : true}"
+            android:onClick="@{() -> activity.uploadStory()}"
             app:icon="@drawable/ic_check"
             app:iconSize="28dp"
             app:iconTint="@color/green"
@@ -104,8 +133,9 @@
             android:layout_height="42dp"
             android:layout_marginEnd="36dp"
             android:contentDescription="@string/cd_open_camera"
-            android:src="@drawable/ic_camera"
+            android:enabled="@{isLoading ? false : true}"
             android:onClick="@{() -> activity.openCamera()}"
+            android:src="@drawable/ic_camera"
             app:layout_anchor="@id/app_bar_layout"
             app:layout_anchorGravity="bottom|end"
             tools:ignore="ImageContrastCheck" />
@@ -116,6 +146,7 @@
             android:layout_height="42dp"
             android:layout_marginStart="36dp"
             android:contentDescription="@string/cd_open_gallery"
+            android:enabled="@{isLoading ? false : true}"
             android:src="@drawable/ic_gallery"
             app:layout_anchor="@id/app_bar_layout"
             app:layout_anchorGravity="bottom|start"

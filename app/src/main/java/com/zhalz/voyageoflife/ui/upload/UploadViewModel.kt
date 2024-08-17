@@ -18,7 +18,7 @@ class UploadViewModel @Inject constructor(private val storyRepository: StoryRepo
     private val _uploadResponse = MutableSharedFlow<ApiResult<UploadResponse>>()
     val uploadResponse = _uploadResponse.asSharedFlow()
 
-    fun uploadStory(description: String, image: File?) = viewModelScope.launch {
+    fun uploadStory(description: String, image: File) = viewModelScope.launch {
         _uploadResponse.emit(ApiResult.Loading())
         val result = storyRepository.uploadStories(description, image)
         _uploadResponse.emit(result)

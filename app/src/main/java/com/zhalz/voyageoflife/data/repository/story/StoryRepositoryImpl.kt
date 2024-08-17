@@ -6,9 +6,11 @@ import com.zhalz.voyageoflife.data.remote.response.ErrorResponse
 import com.zhalz.voyageoflife.data.remote.response.StoriesResponse
 import com.zhalz.voyageoflife.data.remote.response.UploadResponse
 import com.zhalz.voyageoflife.utils.ApiResult
+import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import retrofit2.HttpException
 import java.io.File
 import javax.inject.Inject
@@ -27,15 +29,14 @@ class StoryRepositoryImpl @Inject constructor(private val apiService: ApiService
         }
     }
 
-    override suspend fun uploadStories(description: String, image: File?): ApiResult<UploadResponse> {
+    override suspend fun uploadStories(description: String, image: File): ApiResult<UploadResponse> {
 
-        val fileBody = image?.asRequestBody("multipart/form-data".toMediaTypeOrNull())
-        val filePart = fileBody?.let {
-            MultipartBody.Part.createFormData("profile", image.name, it)
-        }
+        val descriptionBody = description.toRequestBody("text/plain".toMediaType())
+        val fileBody = image.asRequestBody("image/jpg".toMediaTypeOrNull())
+        val filePart = MultipartBody.Part.createFormData("photo", image.name, fileBody)
 
         return try {
-            val response = apiService.uploadStory(description = description, file = filePart)
+            val response = apiService.uploadStory(description = descriptionBody, photo = filePart)
             ApiResult.Success(response)
         }
         catch (e: HttpException) {
