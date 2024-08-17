@@ -13,6 +13,7 @@ import androidx.core.content.FileProvider
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
 import com.zhalz.voyageoflife.R
+import com.zhalz.voyageoflife.data.remote.response.UploadResponse
 import com.zhalz.voyageoflife.databinding.ActivityUploadBinding
 import com.zhalz.voyageoflife.utils.ApiResult
 import com.zhalz.voyageoflife.utils.Const.Image.AUTHORITY
@@ -43,30 +44,27 @@ class UploadActivity : AppCompatActivity() {
         binding.activity = this
         binding.viewmodel = viewModel
 
-        observeUpload()
     }
 
-    fun uploadStory() {
+    fun uploadStory() = lifecycleScope.launch {
         if (imageFile.getBitmap() == null) toast(R.string.please_select_an_image)
         else viewModel.uploadStory(description, imageFile.reduceFileImage())
+            .collect { processUpdateResult(it) }
     }
 
-    private fun observeUpload() = lifecycleScope.launch {
-        viewModel.uploadResponse.collect{
-            when (it) {
-                is ApiResult.Success -> {
-                    binding.isLoading = false
-                    toast(it.data?.message)
-                    finish()
-                }
-                is ApiResult.Error -> {
-                    binding.isLoading = false
-                    toast(it.message)
-                }
-                is ApiResult.Loading -> binding.isLoading = true
+    private fun processUpdateResult(result: ApiResult<UploadResponse>) =
+        when (result) {
+            is ApiResult.Success -> {
+                binding.isLoading = false
+                toast(result.data?.message)
+                finish()
             }
+            is ApiResult.Error -> {
+                binding.isLoading = false
+                toast(result.message)
+            }
+            is ApiResult.Loading -> binding.isLoading = true
         }
-    }
 
     /** -- GALLERY -- **/
     fun openGallery() {
