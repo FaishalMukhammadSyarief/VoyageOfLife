@@ -3,6 +3,7 @@ package com.zhalz.voyageoflife.utils
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import androidx.core.app.ActivityOptionsCompat
 
 object ActivityOpener {
 
@@ -12,9 +13,9 @@ object ActivityOpener {
         extraData: Intent.() -> Unit = {}
     ) {
         val destination = Intent(this, T::class.java).apply(extraData)
-        startActivity(destination)
+        val fadeTransition = ActivityOptionsCompat.makeSceneTransitionAnimation(this as Activity)
+        startActivity(destination, fadeTransition.toBundle())
 
-        if (this !is Activity) return
         if (finish) finish()
         if (finishAll) finishAffinity()
     }

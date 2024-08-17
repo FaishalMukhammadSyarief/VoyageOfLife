@@ -29,7 +29,7 @@
                 android:layout_height="match_parent"
                 android:contentDescription="@string/cd_image_story"
                 android:scaleType="centerCrop"
-                android:src="@drawable/deer"
+                tools:src="@drawable/deer"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:shapeAppearance="@style/SlightlyRoundCorner" />
 

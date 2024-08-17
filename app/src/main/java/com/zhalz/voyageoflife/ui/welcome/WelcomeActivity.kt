@@ -1,6 +1,5 @@
 package com.zhalz.voyageoflife.ui.welcome
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -28,9 +27,6 @@ class WelcomeActivity : AppCompatActivity() {
 
         binding.activity = this
 
-        binding.login = Intent(this, LoginActivity::class.java)
-        binding.register = Intent(this, RegisterActivity::class.java)
-
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
         checkLogin()
@@ -39,5 +35,8 @@ class WelcomeActivity : AppCompatActivity() {
     private fun checkLogin() = lifecycleScope.launch {
         if (viewModel.isLogin()) openActivity<HomeActivity>(finish = true)
     }
+
+    fun toLogin() = openActivity<LoginActivity>()
+    fun toRegister() = openActivity<RegisterActivity>()
 
 }

@@ -1,6 +1,5 @@
 package com.zhalz.voyageoflife.ui.home
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
@@ -38,7 +37,6 @@ class HomeActivity : AppCompatActivity() {
 
         binding.activity = this
         binding.storyAdapter = storyAdapter
-        binding.upload = Intent(this, UploadActivity::class.java)
 
         initUI()
         collectStories()
@@ -83,6 +81,8 @@ class HomeActivity : AppCompatActivity() {
         viewModel.clearUserCredential()
         openActivity<WelcomeActivity>(finish = true)
     }
+
+    fun toUpload() = openActivity<UploadActivity>()
 
     private fun toDetail(data: StoryData) =
         openActivity<DetailActivity> { putExtra(EXTRA_USER, data) }
