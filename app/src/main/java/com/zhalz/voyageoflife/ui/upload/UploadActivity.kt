@@ -1,11 +1,8 @@
 package com.zhalz.voyageoflife.ui.upload
 
 import android.Manifest.permission.CAMERA
-import android.app.Activity
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.provider.MediaStore
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
@@ -86,29 +83,24 @@ class UploadActivity : AppCompatActivity() {
         }
 
     /** -- CAMERA -- **/
-    fun openCamera() =
-        if (isPermissionGranted()) launchCamera()
-        else requestCameraPermission()
-
-    private fun launchCamera() {
+    fun openCamera() {
+        if (!checkCameraPermission()) return
         val photoURI = FileProvider.getUriForFile(this, AUTHORITY, imageFile)
-        val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-            .putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
-
-        cameraLauncher.launch(cameraIntent)
+        cameraLauncher.launch(photoURI)
     }
 
     private val cameraLauncher =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-            if (it.resultCode == Activity.RESULT_OK) binding.ivImage.setImageBitmap(imageFile.getBitmap())
+        registerForActivityResult(ActivityResultContracts.TakePicture()) { success ->
+            if (success) binding.ivImage.setImageBitmap(imageFile.getBitmap())
         }
 
     /** -- RUNTIME PERMISSION -- **/
-    private fun isPermissionGranted(): Boolean =
-        ContextCompat.checkSelfPermission(this, CAMERA) == PackageManager.PERMISSION_GRANTED
-
-    private fun requestCameraPermission() =
-        requestPermissions(arrayOf(CAMERA), REQUEST_CODE_CAMERA)
+    private fun checkCameraPermission(): Boolean =
+        if (ContextCompat.checkSelfPermission(this, CAMERA) == PackageManager.PERMISSION_GRANTED) true
+        else {
+            requestPermissions(arrayOf(CAMERA), REQUEST_CODE_CAMERA)
+            false
+        }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
