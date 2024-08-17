@@ -21,7 +21,7 @@
     <string name="create_account">Create \nAccount</string>
     <string name="doesnt_have_an_account">Doesn\'t have an account?</string>
     <string name="already_have_an_account">Already have an account?</string>
-    <string name="setting">Setting</string>
+    <string name="language">Language</string>
     <string name="logout">Logout</string>
     <string name="action_positive">Yes</string>
     <string name="action_negative">Cancel</string>

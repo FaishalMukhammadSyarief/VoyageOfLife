@@ -2,6 +2,7 @@ package com.zhalz.voyageoflife.ui.home
 
 import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -61,6 +62,15 @@ class HomeActivity : AppCompatActivity() {
             showDialog(getString(R.string.logout), getString(R.string.msg_logout)) { logout() }
             true
         }
+
+        binding.toolbar.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.action_logout -> showDialog(getString(R.string.logout), getString(R.string.msg_logout)) { logout() }
+                R.id.action_language -> startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
+            }
+            true
+        }
+
     }
 
     private fun collectStories() = lifecycleScope.launch {
