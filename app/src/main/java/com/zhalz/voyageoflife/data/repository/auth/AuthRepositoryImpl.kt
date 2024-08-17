@@ -1,5 +1,6 @@
 package com.zhalz.voyageoflife.data.repository.auth
 
+import androidx.datastore.preferences.core.Preferences
 import com.google.gson.Gson
 import com.zhalz.voyageoflife.data.local.DataStoreUser
 import com.zhalz.voyageoflife.data.remote.ApiService
@@ -43,5 +44,7 @@ class AuthRepositoryImpl @Inject constructor(private val apiService: ApiService,
         val token = dataStoreUser.getUserCredentials().first()
         return token != null
     }
+
+    override suspend fun deleteUser(): Preferences = dataStoreUser.clearUserCredentials()
 
 }

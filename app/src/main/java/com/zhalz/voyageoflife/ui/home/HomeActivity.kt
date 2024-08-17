@@ -15,9 +15,11 @@ import com.zhalz.voyageoflife.databinding.ActivityHomeBinding
 import com.zhalz.voyageoflife.ui.adapter.StoryAdapter
 import com.zhalz.voyageoflife.ui.detail.DetailActivity
 import com.zhalz.voyageoflife.ui.upload.UploadActivity
+import com.zhalz.voyageoflife.ui.welcome.WelcomeActivity
 import com.zhalz.voyageoflife.utils.ActivityOpener.openActivity
 import com.zhalz.voyageoflife.utils.ApiResult
 import com.zhalz.voyageoflife.utils.Const.Parcel.EXTRA_USER
+import com.zhalz.voyageoflife.utils.Dialog.showDialog
 import com.zhalz.voyageoflife.utils.ToastMaker.toast
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -53,6 +55,11 @@ class HomeActivity : AppCompatActivity() {
             binding.swipeRefresh.isRefreshing = true
             viewModel.getStories()
         }
+
+        binding.toolbar.menu.findItem(R.id.menu_logout).setOnMenuItemClickListener {
+            showDialog(getString(R.string.logout), getString(R.string.msg_logout)) { logout() }
+            true
+        }
     }
 
     private fun collectStories() = lifecycleScope.launch {
@@ -70,6 +77,11 @@ class HomeActivity : AppCompatActivity() {
                 is ApiResult.Loading -> binding.swipeRefresh.isRefreshing = true
             }
         }
+    }
+
+    private fun logout() = lifecycleScope.launch {
+        viewModel.clearUserCredential()
+        openActivity<WelcomeActivity>(finish = true)
     }
 
     private fun toDetail(data: StoryData) =

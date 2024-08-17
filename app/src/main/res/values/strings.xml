@@ -21,6 +21,10 @@
     <string name="create_account">Create \nAccount</string>
     <string name="doesnt_have_an_account">Doesn\'t have an account?</string>
     <string name="already_have_an_account">Already have an account?</string>
+    <string name="setting">Setting</string>
+    <string name="logout">Logout</string>
+    <string name="action_positive">Yes</string>
+    <string name="action_negative">Cancel</string>
 
     <string name="name">Name</string>
     <string name="email">Email</string>
@@ -33,10 +37,11 @@
     <string name="password_error">Password must contain 8 characters</string>
     <string name="login_success">Welcome Back %1$s!</string>
     <string name="register_success">%1$s, Please login to continue</string>
+    <string name="please_select_an_image">Please select an image</string>
+    <string name="permission_not_granted">Permission not Granted</string>
+    <string name="msg_logout">Do you really want to Logout?</string>
 
     <string name="placeholder_name">Faishal</string>
     <string name="placeholder_date">26 October 2006</string>
-    <string name="permission_not_granted">Permission not Granted</string>
-    <string name="please_select_an_image">Please select an image</string>
 
 </resources>

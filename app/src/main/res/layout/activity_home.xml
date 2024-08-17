@@ -37,6 +37,7 @@
                 app:layout_scrollFlags="scroll|enterAlwaysCollapsed|enterAlways"
                 app:title="@string/app_name"
                 app:titleCentered="true"
+                app:menu="@menu/menu_home"
                 app:titleTextAppearance="@style/TextTitle.ToolbarTitle"
                 app:titleTextColor="@color/black"
                 tools:ignore="RtlSymmetry" />
