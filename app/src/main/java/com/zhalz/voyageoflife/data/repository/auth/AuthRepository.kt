@@ -8,5 +8,6 @@ interface AuthRepository {
 
     suspend fun login(email: String, password: String) : ApiResult<LoginResponse>
     suspend fun register(name: String, email: String, password: String) : ApiResult<RegisterResponse>
+    suspend fun isLogin() : Boolean
 
 }

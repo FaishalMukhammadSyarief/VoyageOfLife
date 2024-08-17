@@ -7,6 +7,7 @@ import com.zhalz.voyageoflife.data.remote.response.ErrorResponse
 import com.zhalz.voyageoflife.data.remote.response.LoginResponse
 import com.zhalz.voyageoflife.data.remote.response.RegisterResponse
 import com.zhalz.voyageoflife.utils.ApiResult
+import kotlinx.coroutines.flow.first
 import retrofit2.HttpException
 import javax.inject.Inject
 
@@ -36,6 +37,11 @@ class AuthRepositoryImpl @Inject constructor(private val apiService: ApiService,
             val errorBody = Gson().fromJson(jsonInString, ErrorResponse::class.java)
             ApiResult.Error(errorBody.message)
         }
+    }
+
+    override suspend fun isLogin(): Boolean {
+        val token = dataStoreUser.getUserCredentials().first()
+        return token != null
     }
 
 }

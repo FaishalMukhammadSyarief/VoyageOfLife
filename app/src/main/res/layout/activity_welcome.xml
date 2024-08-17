@@ -7,7 +7,7 @@
 
         <variable
             name="activity"
-            type="com.zhalz.voyageoflife.ui.WelcomeActivity" />
+            type="com.zhalz.voyageoflife.ui.welcome.WelcomeActivity" />
 
         <variable
             name="login"
