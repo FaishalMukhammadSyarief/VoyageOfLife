@@ -3,6 +3,7 @@ package com.zhalz.voyageoflife.utils
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Environment
 import com.zhalz.voyageoflife.utils.Const.Image.MAXIMAL_SIZE
 import java.io.ByteArrayOutputStream
@@ -36,5 +37,14 @@ object FileHelper {
     }
 
     fun File.getBitmap(): Bitmap? = BitmapFactory.decodeFile(this.absolutePath)
+
+    fun Context.uriToFile(uri: Uri, outputFile: File): File {
+        contentResolver.openInputStream(uri)?.use { inputStream ->
+            FileOutputStream(outputFile).use { outputStream ->
+                inputStream.copyTo(outputStream)
+            }
+        }
+        return outputFile
+    }
 
 }

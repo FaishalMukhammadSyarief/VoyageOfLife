@@ -7,6 +7,7 @@ import android.content.pm.PackageManager
 import android.os.Bundle
 import android.provider.MediaStore
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -23,6 +24,7 @@ import com.zhalz.voyageoflife.utils.Const.Image.REQUEST_CODE_CAMERA
 import com.zhalz.voyageoflife.utils.FileHelper.createTempFile
 import com.zhalz.voyageoflife.utils.FileHelper.getBitmap
 import com.zhalz.voyageoflife.utils.FileHelper.reduceFileImage
+import com.zhalz.voyageoflife.utils.FileHelper.uriToFile
 import com.zhalz.voyageoflife.utils.ToastMaker.toast
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -70,6 +72,20 @@ class UploadActivity : AppCompatActivity() {
         }
     }
 
+    /** -- GALLERY -- **/
+    fun openGallery() {
+        val galleryIntent = PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)
+        galleryLauncher.launch(galleryIntent)
+    }
+
+    private val galleryLauncher =
+        registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
+            if (uri != null) {
+                binding.ivImage.setImageURI(uri)
+                uriToFile(uri, imageFile)
+            }
+        }
+
     /** -- CAMERA -- **/
     fun openCamera() =
         if (isPermissionGranted(CAMERA)) launchCamera()
@@ -97,11 +113,8 @@ class UploadActivity : AppCompatActivity() {
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-
         if (!grantResults.all { it == PackageManager.PERMISSION_GRANTED }) toast(R.string.permission_not_granted)
-        else when (requestCode) {
-            REQUEST_CODE_CAMERA -> openCamera()
-        }
+        else if (requestCode == REQUEST_CODE_CAMERA) openCamera()
     }
 
 }
