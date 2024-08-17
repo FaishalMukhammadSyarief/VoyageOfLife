@@ -11,7 +11,6 @@ import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.databinding.DataBindingUtil
@@ -88,8 +87,8 @@ class UploadActivity : AppCompatActivity() {
 
     /** -- CAMERA -- **/
     fun openCamera() =
-        if (isPermissionGranted(CAMERA)) launchCamera()
-        else requestPermission(CAMERA, REQUEST_CODE_CAMERA)
+        if (isPermissionGranted()) launchCamera()
+        else requestCameraPermission()
 
     private fun launchCamera() {
         val photoURI = FileProvider.getUriForFile(this, AUTHORITY, imageFile)
@@ -105,11 +104,11 @@ class UploadActivity : AppCompatActivity() {
         }
 
     /** -- RUNTIME PERMISSION -- **/
-    private fun isPermissionGranted(permission: String): Boolean =
-        ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED
+    private fun isPermissionGranted(): Boolean =
+        ContextCompat.checkSelfPermission(this, CAMERA) == PackageManager.PERMISSION_GRANTED
 
-    private fun requestPermission(permission: String, requestCode: Int) =
-        ActivityCompat.requestPermissions(this, arrayOf(permission), requestCode)
+    private fun requestCameraPermission() =
+        requestPermissions(arrayOf(CAMERA), REQUEST_CODE_CAMERA)
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
