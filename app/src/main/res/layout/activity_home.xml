@@ -12,6 +12,10 @@
             name="storyAdapter"
             type="com.zhalz.voyageoflife.ui.adapter.StoryAdapter" />
 
+        <variable
+            name="upload"
+            type="android.content.Intent" />
+
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -60,7 +64,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/green"
-            android:onClick="@{() -> activity.toUpload()}"
+            android:onClick="@{() -> activity.startActivity(upload)}"
             android:src="@drawable/ic_add"
             android:contentDescription="@string/cd_add_story"
             app:maxImageSize="32dp"

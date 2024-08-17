@@ -1,9 +1,11 @@
 package com.zhalz.voyageoflife.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityOptionsCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.databinding.DataBindingUtil
@@ -37,6 +39,7 @@ class HomeActivity : AppCompatActivity() {
 
         binding.activity = this
         binding.storyAdapter = storyAdapter
+        binding.upload = Intent(this, UploadActivity::class.java)
 
         initUI()
         collectStories()
@@ -82,10 +85,10 @@ class HomeActivity : AppCompatActivity() {
         openActivity<WelcomeActivity>(finish = true)
     }
 
-    fun toUpload() = openActivity<UploadActivity>()
-
-    private fun toDetail(data: StoryData) =
-        openActivity<DetailActivity> { putExtra(EXTRA_USER, data) }
+    private fun toDetail(data: StoryData) {
+        val transition = ActivityOptionsCompat.makeSceneTransitionAnimation(this)
+        openActivity<DetailActivity> (transition = transition) { putExtra(EXTRA_USER, data) }
+    }
 
     override fun onStart() {
         super.onStart()
