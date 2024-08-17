@@ -32,8 +32,8 @@
             style="@style/LoadingScreen"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="100dp"
             android:background="@color/blurry"
+            android:padding="100dp"
             android:visibility="@{isLoading ? View.VISIBLE : View.GONE}" />
 
         <LinearLayout
@@ -82,16 +82,21 @@
 
             <!-- Name -->
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/edl_register_name"
                 style="@style/CustomEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/name"
+                android:alpha="0"
+                tools:alpha="100"
                 app:startIconDrawable="@drawable/ic_profile">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/ed_register_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:alpha="0"
+                    tools:alpha="100"
                     android:enabled="@{isLoading ? false : true}"
                     android:inputType="text"
                     android:text="@={viewmodel.name}"
@@ -100,10 +105,13 @@
 
             <!-- Email -->
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/edl_register_email"
                 style="@style/CustomEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/email"
+                android:alpha="0"
+                tools:alpha="100"
                 app:startIconDrawable="@drawable/ic_email">
 
                 <com.zhalz.voyageoflife.customview.TextInputEmail
@@ -113,15 +121,20 @@
                     android:enabled="@{isLoading ? false : true}"
                     android:inputType="textEmailAddress"
                     android:text="@={viewmodel.email}"
+                    android:alpha="0"
+                    tools:alpha="100"
                     tools:ignore="TextContrastCheck,VisualLintTextFieldSize" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Password -->
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/edl_register_password"
                 style="@style/CustomEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/password"
+                android:alpha="0"
+                tools:alpha="100"
                 app:endIconMode="password_toggle"
                 app:startIconDrawable="@drawable/ic_lock">
 
@@ -132,13 +145,18 @@
                     android:enabled="@{isLoading ? false : true}"
                     android:inputType="textPassword"
                     android:text="@={viewmodel.password}"
+                    android:alpha="0"
+                    tools:alpha="100"
                     tools:ignore="TextContrastCheck,VisualLintTextFieldSize" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_register"
                 style="@style/CustomButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:alpha="0"
+                tools:alpha="100"
                 android:layout_marginTop="24dp"
                 android:enabled="@{isLoading ? false : true}"
                 android:onClick="@{() -> viewmodel.register()}"
@@ -147,9 +165,12 @@
                 tools:ignore="VisualLintButtonSize" />
 
             <LinearLayout
+                android:id="@+id/linear_login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:alpha="0"
+                tools:alpha="100"
                 android:orientation="horizontal">
 
                 <TextView

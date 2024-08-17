@@ -1,6 +1,9 @@
 package com.zhalz.voyageoflife.ui.login
 
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import android.os.Bundle
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -33,8 +36,24 @@ class LoginActivity : AppCompatActivity() {
         binding.activity = this
         binding.viewmodel = viewModel
 
+        playAnimation()
         observeLogin()
     }
+
+    private fun playAnimation() = AnimatorSet().apply {
+        playSequentially(
+            fadeAnim(binding.edLoginEmail, 300),
+            fadeAnim(binding.edlLoginEmail, 250),
+            fadeAnim(binding.edLoginPassword, 250),
+            fadeAnim(binding.edlLoginPassword, 250),
+            fadeAnim(binding.btnLogin, 250),
+            fadeAnim(binding.linearRegister, 250)
+        )
+        start()
+    }
+
+    private fun fadeAnim(view: View, duration: Long) =
+        ObjectAnimator.ofFloat(view, View.ALPHA, 1f).setDuration(duration)
 
     private fun observeLogin() = lifecycleScope.launch {
         viewModel.loginResponse.collect {
