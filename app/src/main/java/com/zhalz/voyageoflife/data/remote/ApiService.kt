@@ -9,7 +9,6 @@ import okhttp3.RequestBody
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
-import retrofit2.http.Header
 import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.Part
@@ -32,14 +31,11 @@ interface ApiService {
     ) : RegisterResponse
 
     @GET("stories")
-    suspend fun getStories(
-        @Header("Authorization") auth: String = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJ1c2VyLUNFZmJvLWl0MVlqcndkNF8iLCJpYXQiOjE3MjM1NDkxMTl9.LYAQ_ExB1Elqk-lQlLRIwpuMedonHdafvIpMPxvwkFs"
-    ) : StoriesResponse
+    suspend fun getStories() : StoriesResponse
 
     @Multipart
     @POST("stories")
     suspend fun uploadStory(
-        @Header("Authorization") auth: String = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJ1c2VyLUNFZmJvLWl0MVlqcndkNF8iLCJpYXQiOjE3MjM1NDkxMTl9.LYAQ_ExB1Elqk-lQlLRIwpuMedonHdafvIpMPxvwkFs",
         @Part("description") description: RequestBody,
         @Part photo: MultipartBody.Part
     ) : UploadResponse

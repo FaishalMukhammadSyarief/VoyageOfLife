@@ -12,4 +12,9 @@ object Const {
         const val MAXIMAL_SIZE = 1000000
     }
 
+    object DataStore {
+        const val DATA_STORE_NAME = "user"
+        const val TOKEN_KEY = "token"
+    }
+
 }

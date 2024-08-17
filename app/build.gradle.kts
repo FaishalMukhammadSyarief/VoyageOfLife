@@ -80,4 +80,7 @@ dependencies {
     /*  SWIPE REFRESH  */
     implementation (libs.androidx.swiperefreshlayout)
 
+    /*  DATA STORE  */
+    implementation(libs.androidx.datastore.preferences)
+
 }
