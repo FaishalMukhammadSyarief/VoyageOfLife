@@ -15,6 +15,8 @@ import androidx.lifecycle.lifecycleScope
 import com.zhalz.voyageoflife.R
 import com.zhalz.voyageoflife.data.remote.response.UploadResponse
 import com.zhalz.voyageoflife.databinding.ActivityUploadBinding
+import com.zhalz.voyageoflife.ui.home.HomeActivity
+import com.zhalz.voyageoflife.utils.ActivityOpener.openActivity
 import com.zhalz.voyageoflife.utils.ApiResult
 import com.zhalz.voyageoflife.utils.Const.Image.AUTHORITY
 import com.zhalz.voyageoflife.utils.Const.Image.REQUEST_CODE_CAMERA
@@ -57,7 +59,7 @@ class UploadActivity : AppCompatActivity() {
             is ApiResult.Success -> {
                 binding.isLoading = false
                 toast(result.data?.message)
-                finish()
+                openActivity<HomeActivity>(finishAll = true)
             }
             is ApiResult.Error -> {
                 binding.isLoading = false
