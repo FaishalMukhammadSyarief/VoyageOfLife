@@ -43,6 +43,11 @@ android {
     kapt {
         correctErrorTypes = true
     }
+    testOptions {
+        unitTests {
+            isReturnDefaultValues = true
+        }
+    }
 }
 
 dependencies {
