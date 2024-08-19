@@ -1,8 +1,10 @@
 package com.zhalz.voyageoflife.data.repository.story
 
+import androidx.lifecycle.LiveData
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
+import androidx.paging.liveData
 import com.google.gson.Gson
 import com.zhalz.voyageoflife.data.paging.StoriesPagingSource
 import com.zhalz.voyageoflife.data.remote.ApiService
@@ -23,11 +25,11 @@ import javax.inject.Inject
 
 class StoryRepositoryImpl @Inject constructor(private val apiService: ApiService) : StoryRepository {
 
-    override suspend fun getPagingStories(): Flow<PagingData<StoryData>> {
+    override fun getPagingStories(): LiveData<PagingData<StoryData>> {
         return Pager(
             config = PagingConfig(pageSize = 5),
             pagingSourceFactory = { StoriesPagingSource(apiService) }
-        ).flow
+        ).liveData
     }
 
     override suspend fun getStoriesWithLocation(page: Int?, size: Int?, location: Int): ApiResult<StoriesResponse> {
