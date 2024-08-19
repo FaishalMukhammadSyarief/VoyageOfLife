@@ -87,4 +87,9 @@ dependencies {
     implementation(libs.androidx.paging.runtime.ktx)
     implementation(libs.androidx.paging.common.android)
 
+    /*  MAPS  */
+    implementation (libs.play.services.maps)
+    implementation (libs.play.services.maps)
+    implementation (libs.play.services.location)
+
 }

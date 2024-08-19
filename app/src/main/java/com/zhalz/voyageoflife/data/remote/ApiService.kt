@@ -35,6 +35,7 @@ interface ApiService {
     suspend fun getStories(
         @Query("page") page: Int? = null,
         @Query("size") size: Int? = null,
+        @Query("location") location: Int = 0,
     ) : StoriesResponse
 
     @Multipart

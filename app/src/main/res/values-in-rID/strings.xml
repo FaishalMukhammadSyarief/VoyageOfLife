@@ -44,6 +44,8 @@
     <string name="placeholder_name">Faishal</string>
     <string name="placeholder_date">26 Oktober 2006</string>
     <string name="retry">Ulang</string>
+    <string name="style_error">Error occured</string>
+    <string name="maps">Maps</string>
 
 
 </resources>

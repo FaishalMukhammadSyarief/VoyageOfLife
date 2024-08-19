@@ -17,6 +17,7 @@ import com.zhalz.voyageoflife.databinding.ActivityHomeBinding
 import com.zhalz.voyageoflife.ui.adapter.LoadingStateAdapter
 import com.zhalz.voyageoflife.ui.adapter.StoryAdapter
 import com.zhalz.voyageoflife.ui.detail.DetailActivity
+import com.zhalz.voyageoflife.ui.maps.MapsActivity
 import com.zhalz.voyageoflife.ui.upload.UploadActivity
 import com.zhalz.voyageoflife.ui.welcome.WelcomeActivity
 import com.zhalz.voyageoflife.utils.ActivityOpener.openActivity
@@ -55,6 +56,7 @@ class HomeActivity : AppCompatActivity() {
             when (it.itemId) {
                 R.id.action_logout -> showDialog(getString(R.string.logout), getString(R.string.msg_logout)) { logout() }
                 R.id.action_language -> startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
+                R.id.action_maps -> openActivity<MapsActivity>()
             }
             true
         }

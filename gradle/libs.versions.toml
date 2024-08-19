@@ -16,6 +16,8 @@ material = "1.12.0"
 activity = "1.9.1"
 constraintlayout = "2.1.4"
 pagingRuntimeKtx = "3.3.2"
+playServicesLocation = "21.3.0"
+playServicesMaps = "19.0.0"
 retrofit = "2.9.0"
 swiperefreshlayout = "1.1.0"
 pagingCommonAndroid = "3.3.2"
@@ -40,6 +42,8 @@ lottie = { module = "com.airbnb.android:lottie", version.ref = "lottie" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+play-services-location = { module = "com.google.android.gms:play-services-location", version.ref = "playServicesLocation" }
+play-services-maps = { module = "com.google.android.gms:play-services-maps", version.ref = "playServicesMaps" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 androidx-paging-common-android = { group = "androidx.paging", name = "paging-common-android", version.ref = "pagingCommonAndroid" }
 
