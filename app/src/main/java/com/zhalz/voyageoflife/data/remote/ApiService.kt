@@ -12,6 +12,7 @@ import retrofit2.http.GET
 import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.Part
+import retrofit2.http.Query
 
 interface ApiService {
 
@@ -31,7 +32,10 @@ interface ApiService {
     ) : RegisterResponse
 
     @GET("stories")
-    suspend fun getStories() : StoriesResponse
+    suspend fun getStories(
+        @Query("page") page: Int? = null,
+        @Query("size") size: Int? = null,
+    ) : StoriesResponse
 
     @Multipart
     @POST("stories")

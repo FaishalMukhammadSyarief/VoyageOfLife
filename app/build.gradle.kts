@@ -83,4 +83,8 @@ dependencies {
     /*  DATA STORE  */
     implementation(libs.androidx.datastore.preferences)
 
+    /*  PAGING 3  */
+    implementation(libs.androidx.paging.runtime.ktx)
+    implementation(libs.androidx.paging.common.android)
+
 }

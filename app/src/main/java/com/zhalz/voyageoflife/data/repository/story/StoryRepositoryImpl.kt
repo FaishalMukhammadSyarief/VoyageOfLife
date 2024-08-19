@@ -1,11 +1,16 @@
 package com.zhalz.voyageoflife.data.repository.story
 
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
 import com.google.gson.Gson
+import com.zhalz.voyageoflife.data.paging.StoriesPagingSource
 import com.zhalz.voyageoflife.data.remote.ApiService
 import com.zhalz.voyageoflife.data.remote.response.ErrorResponse
-import com.zhalz.voyageoflife.data.remote.response.StoriesResponse
+import com.zhalz.voyageoflife.data.remote.response.StoryData
 import com.zhalz.voyageoflife.data.remote.response.UploadResponse
 import com.zhalz.voyageoflife.utils.ApiResult
+import kotlinx.coroutines.flow.Flow
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -17,16 +22,11 @@ import javax.inject.Inject
 
 class StoryRepositoryImpl @Inject constructor(private val apiService: ApiService) : StoryRepository {
 
-    override suspend fun getStories(): ApiResult<StoriesResponse> {
-        return try {
-            val response = apiService.getStories()
-            ApiResult.Success(response)
-        }
-        catch (e: HttpException) {
-            val jsonInString = e.response()?.errorBody()?.string()
-            val errorBody = Gson().fromJson(jsonInString, ErrorResponse::class.java)
-            ApiResult.Error(errorBody.message)
-        }
+    override suspend fun getPagingStories(): Flow<PagingData<StoryData>> {
+        return Pager(
+            config = PagingConfig(pageSize = 5),
+            pagingSourceFactory = { StoriesPagingSource(apiService) }
+        ).flow
     }
 
     override suspend fun uploadStories(description: String, image: File): ApiResult<UploadResponse> {

@@ -14,15 +14,14 @@ import androidx.lifecycle.lifecycleScope
 import com.zhalz.voyageoflife.R
 import com.zhalz.voyageoflife.data.remote.response.StoryData
 import com.zhalz.voyageoflife.databinding.ActivityHomeBinding
+import com.zhalz.voyageoflife.ui.adapter.LoadingStateAdapter
 import com.zhalz.voyageoflife.ui.adapter.StoryAdapter
 import com.zhalz.voyageoflife.ui.detail.DetailActivity
 import com.zhalz.voyageoflife.ui.upload.UploadActivity
 import com.zhalz.voyageoflife.ui.welcome.WelcomeActivity
 import com.zhalz.voyageoflife.utils.ActivityOpener.openActivity
-import com.zhalz.voyageoflife.utils.ApiResult
 import com.zhalz.voyageoflife.utils.Const.Parcel.EXTRA_USER
 import com.zhalz.voyageoflife.utils.Dialog.showDialog
-import com.zhalz.voyageoflife.utils.ToastMaker.toast
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -39,7 +38,6 @@ class HomeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_home)
 
         binding.activity = this
-        binding.storyAdapter = storyAdapter
         binding.upload = Intent(this, UploadActivity::class.java)
 
         initUI()
@@ -53,11 +51,6 @@ class HomeActivity : AppCompatActivity() {
             insets
         }
 
-        binding.swipeRefresh.setOnRefreshListener {
-            binding.swipeRefresh.isRefreshing = true
-            viewModel.getStories()
-        }
-
         binding.toolbar.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.action_logout -> showDialog(getString(R.string.logout), getString(R.string.msg_logout)) { logout() }
@@ -69,19 +62,11 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun collectStories() = lifecycleScope.launch {
-        viewModel.storiesResponse.collect {
-            when (it) {
-                is ApiResult.Success -> {
-                    storyAdapter.submitList(it.data?.listStory)
-                    binding.storyAdapter = storyAdapter
-                    binding.swipeRefresh.isRefreshing = false
-                }
-                is ApiResult.Error -> {
-                    toast(it.message)
-                    binding.swipeRefresh.isRefreshing = false
-                }
-                is ApiResult.Loading -> binding.swipeRefresh.isRefreshing = true
-            }
+        viewModel.getPagingStories().collect {
+            storyAdapter.submitData(it)
+            binding.rvStories.adapter = storyAdapter.withLoadStateFooter(
+                LoadingStateAdapter { storyAdapter.retry() }
+            )
         }
     }
 
@@ -97,7 +82,7 @@ class HomeActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        viewModel.getStories()
+        collectStories()
     }
 
 }

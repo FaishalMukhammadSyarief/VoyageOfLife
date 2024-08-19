@@ -9,10 +9,6 @@
             type="com.zhalz.voyageoflife.ui.home.HomeActivity" />
 
         <variable
-            name="storyAdapter"
-            type="com.zhalz.voyageoflife.ui.adapter.StoryAdapter" />
-
-        <variable
             name="upload"
             type="android.content.Intent" />
 
@@ -50,9 +46,9 @@
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_stories"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:adapter="@{storyAdapter}"
                 android:orientation="vertical"
                 android:padding="8dp"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
