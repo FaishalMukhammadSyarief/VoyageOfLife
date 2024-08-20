@@ -12,6 +12,10 @@
             name="upload"
             type="android.content.Intent" />
 
+        <variable
+            name="adapter"
+            type="androidx.recyclerview.widget.ConcatAdapter" />
+
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -46,10 +50,10 @@
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_stories"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
+                android:adapter="@{adapter}"
                 android:padding="8dp"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:spanCount="1"

@@ -32,6 +32,7 @@ class HomeActivity : AppCompatActivity() {
     private val binding: ActivityHomeBinding by lazy { DataBindingUtil.setContentView(this, R.layout.activity_home) }
     private val viewModel: HomeViewModel by viewModels()
     private val storyAdapter: StoryAdapter by lazy { StoryAdapter { toDetail(it) } }
+    private val stateAdapter: LoadingStateAdapter by lazy { LoadingStateAdapter { storyAdapter.retry() } }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +41,8 @@ class HomeActivity : AppCompatActivity() {
 
         binding.activity = this
         binding.upload = Intent(this, UploadActivity::class.java)
+
+        binding.adapter = storyAdapter.withLoadStateFooter(stateAdapter)
 
         initUI()
         collectStories()
@@ -66,9 +69,7 @@ class HomeActivity : AppCompatActivity() {
     private fun collectStories() = lifecycleScope.launch {
         viewModel.getPagingStories().collect {
             storyAdapter.submitData(it)
-            binding.rvStories.adapter = storyAdapter.withLoadStateFooter(
-                LoadingStateAdapter { storyAdapter.retry() }
-            )
+            binding.adapter = storyAdapter.withLoadStateFooter(stateAdapter)
         }
     }
 
