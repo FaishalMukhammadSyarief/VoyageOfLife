@@ -63,7 +63,6 @@ class HomeActivity : AppCompatActivity() {
             }
             true
         }
-
     }
 
     private fun collectStories() = lifecycleScope.launch {
@@ -73,7 +72,7 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
-    private fun logout() = lifecycleScope.launch {
+    private fun logout() {
         viewModel.clearUserCredential()
         openActivity<WelcomeActivity>(finish = true)
     }
