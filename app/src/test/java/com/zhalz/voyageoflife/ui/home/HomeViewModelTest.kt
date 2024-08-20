@@ -1,20 +1,20 @@
 package com.zhalz.voyageoflife.ui.home
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import androidx.lifecycle.MutableLiveData
 import androidx.paging.AsyncPagingDataDiffer
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.ListUpdateCallback
-import com.zhalz.voyageoflife.DataDummy
-import com.zhalz.voyageoflife.MainDispatcherRule
+import com.zhalz.voyageoflife.utils.DataDummy
+import com.zhalz.voyageoflife.utils.MainDispatcherRule
 import com.zhalz.voyageoflife.StoryPagingSource
 import com.zhalz.voyageoflife.data.remote.response.StoryData
 import com.zhalz.voyageoflife.data.repository.auth.AuthRepository
 import com.zhalz.voyageoflife.data.repository.story.StoryRepository
-import com.zhalz.voyageoflife.getOrAwaitValue
 import com.zhalz.voyageoflife.ui.adapter.StoryAdapter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.*
 import org.junit.Rule
@@ -42,22 +42,22 @@ class HomeViewModelTest {
 
     @Test
     fun `when Get Stories Should Not Null and Return Success`() = runTest {
-        val dummyUsers = DataDummy.generateDummyStoryData()
+        val dummyUsers = DataDummy.generateDummyStory()
         val data: PagingData<StoryData> = StoryPagingSource.snapshot(dummyUsers)
-        val expectedUsers = MutableLiveData<PagingData<StoryData>>()
-        expectedUsers.value = data
+        val expectedUsers = MutableStateFlow<PagingData<StoryData>>(PagingData.empty())
+        expectedUsers.emit(data)
 
         `when`(storyRepository.getPagingStories()).thenReturn(expectedUsers)
 
-        val userViewModel = HomeViewModel(storyRepository, authRepository)
-        val actualUsers = userViewModel.getPagingStories().getOrAwaitValue()
+        val storyViewModel = HomeViewModel(storyRepository, authRepository)
+        val actualStories = storyViewModel.getPagingStories().first()
 
         val differ = AsyncPagingDataDiffer(
-            diffCallback = StoryAdapter.diffCallback,
+            diffCallback = StoryAdapter.DIFF_CALLBACK,
             updateCallback = noopListUpdateCallback,
             workerDispatcher = Dispatchers.Main,
         )
-        differ.submitData(actualUsers)
+        differ.submitData(actualStories)
 
         assertNotNull(differ.snapshot())
         assertEquals(dummyUsers.size, differ.snapshot().size)
@@ -67,20 +67,20 @@ class HomeViewModelTest {
     @Test
     fun `when Get Stories Empty Should Return No Data`() = runTest {
         val data: PagingData<StoryData> = PagingData.from(emptyList())
-        val expectedUsers = MutableLiveData<PagingData<StoryData>>()
-        expectedUsers.value = data
+        val expectedUsers = MutableStateFlow<PagingData<StoryData>>(PagingData.empty())
+        expectedUsers.emit(data)
 
         `when`(storyRepository.getPagingStories()).thenReturn(expectedUsers)
 
-        val userViewModel = HomeViewModel(storyRepository, authRepository)
-        val actualUsers: PagingData<StoryData> = userViewModel.getPagingStories().getOrAwaitValue()
+        val storyViewModel = HomeViewModel(storyRepository, authRepository)
+        val actualStories: PagingData<StoryData> = storyViewModel.getPagingStories().first()
 
         val differ = AsyncPagingDataDiffer(
-            diffCallback = StoryAdapter.diffCallback,
+            diffCallback = StoryAdapter.DIFF_CALLBACK,
             updateCallback = noopListUpdateCallback,
             workerDispatcher = Dispatchers.Main,
         )
-        differ.submitData(actualUsers)
+        differ.submitData(actualStories)
 
         assertEquals(0, differ.snapshot().size)
     }

@@ -1,9 +1,10 @@
-package com.zhalz.voyageoflife
+package com.zhalz.voyageoflife.utils
 
 import com.zhalz.voyageoflife.data.remote.response.StoryData
 
 object DataDummy {
-    fun generateDummyStoryData(): List<StoryData> {
+
+    fun generateDummyStory(): List<StoryData> {
         return (0..100).map {
             StoryData(
                 "photo $it",
@@ -16,4 +17,5 @@ object DataDummy {
             )
         }
     }
+
 }

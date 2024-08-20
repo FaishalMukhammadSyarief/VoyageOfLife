@@ -1,4 +1,4 @@
-package com.zhalz.voyageoflife
+package com.zhalz.voyageoflife.utils
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -10,15 +10,12 @@ import org.junit.rules.TestWatcher
 import org.junit.runner.Description
 
 @ExperimentalCoroutinesApi
-class MainDispatcherRule(
-    private val testDispatcher: TestDispatcher = UnconfinedTestDispatcher()
-) : TestWatcher() {
+class MainDispatcherRule(private val testDispatcher: TestDispatcher = UnconfinedTestDispatcher()) : TestWatcher() {
 
-    override fun starting(description: Description) {
+    override fun starting(description: Description) =
         Dispatchers.setMain(testDispatcher)
-    }
 
-    override fun finished(description: Description) {
+    override fun finished(description: Description) =
         Dispatchers.resetMain()
-    }
+
 }

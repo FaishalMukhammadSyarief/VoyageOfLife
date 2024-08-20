@@ -6,7 +6,6 @@ import com.zhalz.voyageoflife.data.remote.ApiService
 import com.zhalz.voyageoflife.data.remote.response.StoryData
 import javax.inject.Inject
 
-
 class StoriesPagingSource @Inject constructor(private val apiService: ApiService): PagingSource<Int, StoryData>() {
 
     override fun getRefreshKey(state: PagingState<Int, StoryData>): Int? {

@@ -63,9 +63,9 @@ class HomeActivity : AppCompatActivity() {
 
     }
 
-    private fun collectStories() {
-        viewModel.getPagingStories().observe(this@HomeActivity) {
-            storyAdapter.submitData(lifecycle, it)
+    private fun collectStories() = lifecycleScope.launch {
+        viewModel.getPagingStories().collect {
+            storyAdapter.submitData(it)
             binding.rvStories.adapter = storyAdapter.withLoadStateFooter(
                 LoadingStateAdapter { storyAdapter.retry() }
             )

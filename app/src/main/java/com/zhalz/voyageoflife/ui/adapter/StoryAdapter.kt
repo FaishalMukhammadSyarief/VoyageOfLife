@@ -10,7 +10,7 @@ import com.zhalz.voyageoflife.R
 import com.zhalz.voyageoflife.data.remote.response.StoryData
 import com.zhalz.voyageoflife.databinding.ItemStoryBinding
 
-class StoryAdapter(val onItemClick : (StoryData) -> Unit) : PagingDataAdapter<StoryData, StoryAdapter.UserViewHolder>(diffCallback) {
+class StoryAdapter(val onItemClick : (StoryData) -> Unit) : PagingDataAdapter<StoryData, StoryAdapter.UserViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
         return UserViewHolder(DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.item_story, parent, false))
@@ -26,7 +26,7 @@ class StoryAdapter(val onItemClick : (StoryData) -> Unit) : PagingDataAdapter<St
     inner class UserViewHolder(val binding: ItemStoryBinding) : RecyclerView.ViewHolder(binding.root)
 
     companion object {
-        val diffCallback = object : DiffUtil.ItemCallback<StoryData>() {
+        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<StoryData>() {
             override fun areItemsTheSame(oldItem: StoryData, newItem: StoryData): Boolean {
                 return oldItem.id == newItem.id
             }
