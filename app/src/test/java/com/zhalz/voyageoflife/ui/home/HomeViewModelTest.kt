@@ -6,7 +6,7 @@ import androidx.paging.PagingData
 import androidx.recyclerview.widget.ListUpdateCallback
 import com.zhalz.voyageoflife.utils.DataDummy
 import com.zhalz.voyageoflife.utils.MainDispatcherRule
-import com.zhalz.voyageoflife.StoryPagingSource
+import com.zhalz.voyageoflife.data.paging.StoryPagingSource
 import com.zhalz.voyageoflife.data.remote.response.StoryData
 import com.zhalz.voyageoflife.data.repository.auth.AuthRepository
 import com.zhalz.voyageoflife.data.repository.story.StoryRepository

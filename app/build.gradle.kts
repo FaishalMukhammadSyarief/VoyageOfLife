@@ -43,6 +43,7 @@ android {
     kapt {
         correctErrorTypes = true
     }
+    @Suppress("UnstableApiUsage")
     testOptions {
         unitTests {
             isReturnDefaultValues = true
@@ -58,20 +59,25 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
 
-    /*  TEST  */
+    /*  J UNIT  */
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
 
-    testImplementation ("androidx.arch.core:core-testing:2.2.0")
-    testImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.1")
-    testImplementation ("org.mockito:mockito-core:5.1.1")
-    testImplementation ("org.mockito:mockito-inline:5.1.1")
-    androidTestImplementation ("androidx.test:runner:1.5.2")
-    androidTestImplementation ("androidx.arch.core:core-testing:2.2.0")
-    androidTestImplementation ("androidx.test.espresso:espresso-core:3.5.1")
-    androidTestImplementation ("androidx.test.espresso:espresso-contrib:3.5.1")
-    androidTestImplementation ("androidx.test.espresso:espresso-intents:3.5.1")
+    /*  CORE TESTING  */
+    testImplementation(libs.androidx.core.testing)
+    androidTestImplementation(libs.androidx.core.testing)
+
+    /*  ESPRESSO  */
+    androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(libs.androidx.espresso.contrib)
+    androidTestImplementation(libs.androidx.espresso.intents)
+
+    /*  MOCKITO  */
+    testImplementation(libs.mockito.core)
+    testImplementation(libs.mockito.inline)
+
+    /*  COROUTINE TESTING  */
+    testImplementation(libs.kotlinx.coroutines.test)
 
     /*  VIEW MODEL & LIVE DATA  */
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
@@ -79,7 +85,7 @@ dependencies {
 
     /*  DAGGER HILT  */
     implementation(libs.hilt.android)
-    kapt (libs.hilt.compiler)
+    kapt(libs.hilt.compiler)
 
     /*  RETROFIT  */
     implementation(libs.retrofit)
@@ -90,10 +96,10 @@ dependencies {
     implementation(libs.glide)
 
     /*  LOTTIE  */
-    implementation (libs.lottie)
+    implementation(libs.lottie)
 
     /*  SWIPE REFRESH  */
-    implementation (libs.androidx.swiperefreshlayout)
+    implementation(libs.androidx.swiperefreshlayout)
 
     /*  DATA STORE  */
     implementation(libs.androidx.datastore.preferences)
@@ -103,8 +109,8 @@ dependencies {
     implementation(libs.androidx.paging.common.android)
 
     /*  MAPS  */
-    implementation (libs.play.services.maps)
-    implementation (libs.play.services.maps)
-    implementation (libs.play.services.location)
+    implementation(libs.play.services.maps)
+    implementation(libs.play.services.maps)
+    implementation(libs.play.services.location)
 
 }

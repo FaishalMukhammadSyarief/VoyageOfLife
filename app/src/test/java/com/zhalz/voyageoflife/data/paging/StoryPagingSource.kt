@@ -1,4 +1,4 @@
-package com.zhalz.voyageoflife
+package com.zhalz.voyageoflife.data.paging
 
 import androidx.lifecycle.LiveData
 import androidx.paging.PagingData
