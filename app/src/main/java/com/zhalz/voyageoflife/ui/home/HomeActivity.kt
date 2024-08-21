@@ -2,6 +2,7 @@ package com.zhalz.voyageoflife.ui.home
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Parcelable
 import android.provider.Settings
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
@@ -31,8 +32,11 @@ class HomeActivity : AppCompatActivity() {
 
     private val binding: ActivityHomeBinding by lazy { DataBindingUtil.setContentView(this, R.layout.activity_home) }
     private val viewModel: HomeViewModel by viewModels()
+
     private val storyAdapter: StoryAdapter by lazy { StoryAdapter { toDetail(it) } }
     private val stateAdapter: LoadingStateAdapter by lazy { LoadingStateAdapter { storyAdapter.retry() } }
+
+    private var recyclerViewState: Parcelable? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,7 +45,6 @@ class HomeActivity : AppCompatActivity() {
 
         binding.activity = this
         binding.upload = Intent(this, UploadActivity::class.java)
-
         binding.adapter = storyAdapter.withLoadStateFooter(stateAdapter)
 
         initUI()
@@ -82,9 +85,14 @@ class HomeActivity : AppCompatActivity() {
         openActivity<DetailActivity> (transition = transition) { putExtra(EXTRA_USER, data) }
     }
 
+    override fun onPause() {
+        super.onPause()
+        recyclerViewState = binding.rvStories.layoutManager?.onSaveInstanceState()
+    }
+
     override fun onStart() {
         super.onStart()
-        collectStories()
+        if (recyclerViewState != null) binding.rvStories.layoutManager?.onRestoreInstanceState(recyclerViewState)
     }
 
 }
