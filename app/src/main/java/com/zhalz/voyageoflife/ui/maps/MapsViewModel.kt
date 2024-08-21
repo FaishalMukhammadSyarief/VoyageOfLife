@@ -17,11 +17,12 @@ class MapsViewModel @Inject constructor(private val storyRepository: StoryReposi
     private val _storiesResponse = MutableSharedFlow<ApiResult<StoriesResponse>>()
     val storiesResponse = _storiesResponse.asSharedFlow()
 
-    fun getStoryWithLocation(location: Int) = viewModelScope.launch {
+    init { getStoriesWithLocation() }
+
+    private fun getStoriesWithLocation() = viewModelScope.launch {
         _storiesResponse.emit(ApiResult.Loading())
-        val result = storyRepository.getStoriesWithLocation(location = location)
+        val result = storyRepository.getStoriesWithLocation()
         _storiesResponse.emit(result)
     }
 
 }
-

@@ -46,6 +46,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         map.uiSettings.run {
             isCompassEnabled = true
+            isZoomControlsEnabled = true
+            isIndoorLevelPickerEnabled = true
+            isMapToolbarEnabled = true
         }
 
         setMapStyle()
@@ -64,8 +67,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private fun setMapStyle() {
         try {
-            val success = map.setMapStyle(MapStyleOptions.loadRawResourceStyle(this, R.raw.map_style))
-            if (!success) toast(resources.getString(R.string.style_error))
+            map.setMapStyle(MapStyleOptions.loadRawResourceStyle(this, R.raw.map_style))
         }
         catch (exception: Resources.NotFoundException) {
             toast(resources.getString(R.string.style_error))
@@ -84,16 +86,12 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
             map.addMarker(
                 MarkerOptions()
-                    .icon(vectorToBitmap(R.drawable.ic_circular_user, this@MapsActivity))
                     .position(latLng)
+                    .icon(vectorToBitmap(R.drawable.ic_circular_user, this@MapsActivity))
                     .title(story.name)
+                    .snippet(story.description)
             )
         }
-    }
-
-    override fun onStart() {
-        super.onStart()
-        viewModel.getStoryWithLocation(1)
     }
 
 }

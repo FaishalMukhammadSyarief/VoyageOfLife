@@ -29,9 +29,9 @@ class StoryRepositoryImpl @Inject constructor(private val apiService: ApiService
             pagingSourceFactory = { StoriesPagingSource(apiService) }
         ).flow
 
-    override suspend fun getStoriesWithLocation(page: Int?, size: Int?, location: Int): ApiResult<StoriesResponse> {
+    override suspend fun getStoriesWithLocation(): ApiResult<StoriesResponse> {
         return try {
-            val response = apiService.getStories(page, size, location)
+            val response = apiService.getStories(location = 1)
             ApiResult.Success(response)
         }
         catch (e: HttpException) {

@@ -11,7 +11,7 @@ import java.io.File
 interface StoryRepository {
 
     suspend fun getPagingStories() : Flow<PagingData<StoryData>>
-    suspend fun getStoriesWithLocation(page: Int? = null, size: Int? = null, location: Int = 0): ApiResult<StoriesResponse>
+    suspend fun getStoriesWithLocation(): ApiResult<StoriesResponse>
     suspend fun uploadStories(description: String, image: File) : ApiResult<UploadResponse>
 
 }
