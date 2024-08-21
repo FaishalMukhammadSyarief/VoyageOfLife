@@ -2,7 +2,6 @@ package com.zhalz.voyageoflife.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.paging.LoadState
 import androidx.paging.LoadStateAdapter
@@ -10,28 +9,27 @@ import androidx.recyclerview.widget.RecyclerView
 import com.zhalz.voyageoflife.R
 import com.zhalz.voyageoflife.databinding.ItemLoadingBinding
 
-class LoadingStateAdapter(private val retry: () -> Unit) : LoadStateAdapter<LoadingStateAdapter.LoadingStateViewHolder>() {
+class LoadingStateAdapter(val retry: () -> Unit) : LoadStateAdapter<LoadingStateAdapter.LoadingStateViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, loadState: LoadState): LoadingStateViewHolder {
-        return LoadingStateViewHolder(DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.item_loading, parent, false), retry)
-    }
+    override fun onCreateViewHolder(parent: ViewGroup, loadState: LoadState): LoadingStateViewHolder =
+        LoadingStateViewHolder(DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.item_loading, parent, false))
 
     override fun onBindViewHolder(holder: LoadingStateViewHolder, loadState: LoadState) {
         holder.bind(loadState)
     }
 
-    inner class LoadingStateViewHolder(private val binding: ItemLoadingBinding, retry: () -> Unit) : RecyclerView.ViewHolder(binding.root) {
-
-        init { binding.retryButton.setOnClickListener { retry.invoke() } }
-
+    inner class LoadingStateViewHolder(private val binding: ItemLoadingBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(loadState: LoadState) {
-            if (loadState is LoadState.Error) {
-                binding.errorMsg.text = loadState.error.localizedMessage
+            when (loadState) {
+                is LoadState.Loading -> binding.isLoading = true
+                is LoadState.NotLoading -> binding.isLoading = false
+                is LoadState.Error -> {
+                    binding.errorMsg.text = loadState.error.localizedMessage
+                    binding.isLoading = false
+                }
             }
-
-            binding.progressBar.isVisible = loadState is LoadState.Loading
-            binding.retryButton.isVisible = loadState is LoadState.Error
-            binding.errorMsg.isVisible = loadState is LoadState.Error
+            binding.retryButton.setOnClickListener { retry.invoke() }
+            binding.executePendingBindings()
         }
     }
 

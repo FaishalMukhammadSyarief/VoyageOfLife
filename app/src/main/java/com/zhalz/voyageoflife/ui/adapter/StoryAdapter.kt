@@ -10,29 +10,32 @@ import com.zhalz.voyageoflife.R
 import com.zhalz.voyageoflife.data.remote.response.StoryData
 import com.zhalz.voyageoflife.databinding.ItemStoryBinding
 
-class StoryAdapter(val onItemClick : (StoryData) -> Unit) : PagingDataAdapter<StoryData, StoryAdapter.UserViewHolder>(DIFF_CALLBACK) {
+class StoryAdapter(val toDetail : (StoryData) -> Unit) : PagingDataAdapter<StoryData, StoryAdapter.UserViewHolder>(DIFF_CALLBACK) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
-        return UserViewHolder(DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.item_story, parent, false))
-    }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder =
+        UserViewHolder(DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.item_story, parent, false))
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
         val storyData = getItem(position) ?: return
-        holder.binding.data = storyData
-        holder.itemView.setOnClickListener { onItemClick(storyData) }
-        holder.binding.executePendingBindings()
+        holder.bind(storyData)
+        holder.itemView.setOnClickListener { toDetail(storyData) }
     }
 
-    inner class UserViewHolder(val binding: ItemStoryBinding) : RecyclerView.ViewHolder(binding.root)
+    inner class UserViewHolder(private val binding: ItemStoryBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(storyData: StoryData) {
+            binding.data = storyData
+            binding.executePendingBindings()
+        }
+    }
 
     companion object {
         val DIFF_CALLBACK = object : DiffUtil.ItemCallback<StoryData>() {
             override fun areItemsTheSame(oldItem: StoryData, newItem: StoryData): Boolean {
-                return oldItem.id == newItem.id
+                return oldItem == newItem
             }
 
             override fun areContentsTheSame(oldItem: StoryData, newItem: StoryData): Boolean {
-                return oldItem == newItem
+                return oldItem.id == newItem.id
             }
         }
     }
