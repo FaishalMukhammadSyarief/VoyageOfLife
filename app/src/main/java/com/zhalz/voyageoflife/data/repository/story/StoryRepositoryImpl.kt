@@ -25,7 +25,7 @@ class StoryRepositoryImpl @Inject constructor(private val apiService: ApiService
 
     override suspend fun getPagingStories(): Flow<PagingData<StoryData>> =
         Pager(
-            config = PagingConfig(5),
+            config = PagingConfig(pageSize = 3, initialLoadSize = 6),
             pagingSourceFactory = { StoriesPagingSource(apiService) }
         ).flow
 
