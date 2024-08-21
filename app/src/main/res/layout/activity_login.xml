@@ -92,7 +92,7 @@
                 app:startIconDrawable="@drawable/ic_email"
                 tools:alpha="100">
 
-                <com.zhalz.voyageoflife.customview.TextInputEmail
+                <com.zhalz.voyageoflife.ui.customview.TextInputEmail
                     android:id="@+id/ed_login_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -117,7 +117,7 @@
                 app:startIconDrawable="@drawable/ic_lock"
                 tools:alpha="100">
 
-                <com.zhalz.voyageoflife.customview.TextInputPassword
+                <com.zhalz.voyageoflife.ui.customview.TextInputPassword
                     android:id="@+id/ed_login_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
