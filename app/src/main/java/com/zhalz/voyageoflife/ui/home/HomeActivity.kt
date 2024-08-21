@@ -82,7 +82,7 @@ class HomeActivity : AppCompatActivity() {
 
     private fun toDetail(data: StoryData) {
         val transition = ActivityOptionsCompat.makeSceneTransitionAnimation(this)
-        openActivity<DetailActivity> (transition = transition) { putExtra(EXTRA_USER, data) }
+        openActivity<DetailActivity>(transition = transition) { putExtra(EXTRA_USER, data) }
     }
 
     override fun onPause() {
