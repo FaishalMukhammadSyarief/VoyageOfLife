@@ -1,7 +1,8 @@
 package com.zhalz.voyageoflife.di
 
 import android.content.Context
-import com.zhalz.voyageoflife.BuildConfig
+import com.zhalz.voyageoflife.BuildConfig.BASE_URL
+import com.zhalz.voyageoflife.BuildConfig.DEBUG
 import com.zhalz.voyageoflife.data.local.DataStoreUser
 import com.zhalz.voyageoflife.data.remote.ApiService
 import com.zhalz.voyageoflife.data.remote.interceptor.AuthInterceptor
@@ -27,7 +28,7 @@ class AppModule {
     @Provides
     fun provideApiService(dataStoreUser: DataStoreUser) : ApiService {
         val loggingInterceptor =
-            if (BuildConfig.DEBUG) HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+            if (DEBUG) HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
             else HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.NONE)
 
         val client =
@@ -38,7 +39,7 @@ class AppModule {
 
         val retrofit =
             Retrofit.Builder()
-                .baseUrl(BuildConfig.BASE_URL)
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build()
