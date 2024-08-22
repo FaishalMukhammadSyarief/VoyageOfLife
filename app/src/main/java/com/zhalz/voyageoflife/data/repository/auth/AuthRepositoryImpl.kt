@@ -2,7 +2,7 @@ package com.zhalz.voyageoflife.data.repository.auth
 
 import androidx.datastore.preferences.core.Preferences
 import com.google.gson.Gson
-import com.zhalz.voyageoflife.data.local.DataStoreUser
+import com.zhalz.voyageoflife.data.local.datastore.DataStoreUser
 import com.zhalz.voyageoflife.data.remote.ApiService
 import com.zhalz.voyageoflife.data.remote.response.ErrorResponse
 import com.zhalz.voyageoflife.data.remote.response.LoginResponse

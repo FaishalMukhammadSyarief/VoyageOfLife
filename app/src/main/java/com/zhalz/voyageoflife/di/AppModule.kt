@@ -3,7 +3,7 @@ package com.zhalz.voyageoflife.di
 import android.content.Context
 import com.zhalz.voyageoflife.BuildConfig.BASE_URL
 import com.zhalz.voyageoflife.BuildConfig.DEBUG
-import com.zhalz.voyageoflife.data.local.DataStoreUser
+import com.zhalz.voyageoflife.data.local.datastore.DataStoreUser
 import com.zhalz.voyageoflife.data.local.room.AppDatabase
 import com.zhalz.voyageoflife.data.remote.ApiService
 import com.zhalz.voyageoflife.data.remote.interceptor.AuthInterceptor
