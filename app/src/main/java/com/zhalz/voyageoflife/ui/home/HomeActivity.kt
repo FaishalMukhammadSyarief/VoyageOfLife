@@ -71,7 +71,6 @@ class HomeActivity : AppCompatActivity() {
     private fun collectStories() = lifecycleScope.launch {
         viewModel.getPagingStories().collect {
             storyAdapter.submitData(it)
-            binding.adapter = storyAdapter.withLoadStateFooter(stateAdapter)
         }
     }
 

@@ -5,16 +5,15 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.zhalz.voyageoflife.data.remote.response.StoryData
 
 @Dao
 interface StoryDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertStories(stories: List<StoryData>)
+    suspend fun insertStories(stories: List<StoryEntity>)
 
     @Query("SELECT * FROM story_entity")
-    fun getStories(): PagingSource<Int, StoryData>
+    fun getStories(): PagingSource<Int, StoryEntity>
 
     @Query("DELETE FROM story_entity")
     suspend fun deleteStories()

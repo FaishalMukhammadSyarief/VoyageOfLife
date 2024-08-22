@@ -13,7 +13,9 @@ import com.zhalz.voyageoflife.data.remote.response.StoriesResponse
 import com.zhalz.voyageoflife.data.remote.response.StoryData
 import com.zhalz.voyageoflife.data.remote.response.UploadResponse
 import com.zhalz.voyageoflife.utils.ApiResult
+import com.zhalz.voyageoflife.utils.DataMapper.toStoryData
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -31,7 +33,7 @@ class StoryRepositoryImpl @Inject constructor(private val apiService: ApiService
             config = PagingConfig(pageSize = 4, initialLoadSize = 8),
             remoteMediator = StoryRemoteMediator(apiService, database),
             pagingSourceFactory = { database.storyDao().getStories() }
-        ).flow
+        ).flow.map(::toStoryData)
 
     override suspend fun getStoriesWithLocation(): ApiResult<StoriesResponse> {
         return try {

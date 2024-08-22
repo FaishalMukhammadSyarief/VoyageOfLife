@@ -7,10 +7,10 @@ import androidx.room.RoomDatabase
 import com.zhalz.voyageoflife.data.local.room.keys.RemoteKeys
 import com.zhalz.voyageoflife.data.local.room.keys.RemoteKeysDao
 import com.zhalz.voyageoflife.data.local.room.story.StoryDao
-import com.zhalz.voyageoflife.data.remote.response.StoryData
+import com.zhalz.voyageoflife.data.local.room.story.StoryEntity
 
 @Database(
-    entities = [StoryData::class, RemoteKeys::class],
+    entities = [StoryEntity::class, RemoteKeys::class],
     version = 1
 )
 abstract class AppDatabase : RoomDatabase() {
