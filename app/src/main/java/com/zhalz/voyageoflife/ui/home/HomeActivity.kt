@@ -66,11 +66,16 @@ class HomeActivity : AppCompatActivity() {
             }
             true
         }
+
+        binding.swipeRefresh.setOnRefreshListener {
+            collectStories()
+        }
     }
 
     private fun collectStories() = lifecycleScope.launch {
         viewModel.getPagingStories().collect {
             storyAdapter.submitData(it)
+            binding.swipeRefresh.isRefreshing = false
         }
     }
 
