@@ -7,13 +7,13 @@ object DataDummy {
     fun generateDummyStory(): List<StoryData> {
         return (0..100).map {
             StoryData(
-                "photo $it",
-                "createdAt $it",
+                it.toString(),
                 "name $it",
                 "description $it",
+                "photo $it",
                 null,
-                it.toString(),
                 null,
+                "createdAt $it",
             )
         }
     }

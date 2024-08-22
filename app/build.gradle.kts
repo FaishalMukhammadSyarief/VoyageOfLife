@@ -43,6 +43,7 @@ android {
     }
     kotlinOptions {
         jvmTarget = "1.8"
+        freeCompilerArgs += listOf("-Xopt-in=kotlin.RequiresOptIn")
     }
     buildFeatures {
         dataBinding = true
@@ -112,13 +113,19 @@ dependencies {
     /*  DATA STORE  */
     implementation(libs.androidx.datastore.preferences)
 
-    /*  PAGING 3  */
-    implementation(libs.androidx.paging.runtime.ktx)
-    implementation(libs.androidx.paging.common.android)
-
     /*  MAPS  */
     implementation(libs.play.services.maps)
     implementation(libs.play.services.maps)
     implementation(libs.play.services.location)
+
+    /*  PAGING 3  */
+    implementation(libs.androidx.paging.runtime.ktx)
+    implementation(libs.androidx.paging.common.android)
+    implementation(libs.androidx.room.paging)
+
+    /*  ROOM  */
+    implementation(libs.androidx.room.ktx)
+    //noinspection KaptUsageInsteadOfKsp
+    kapt (libs.androidx.room.compiler)
 
 }

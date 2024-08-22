@@ -1,10 +1,12 @@
 package com.zhalz.voyageoflife.data.repository.story
 
+import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.google.gson.Gson
-import com.zhalz.voyageoflife.data.paging.StoriesPagingSource
+import com.zhalz.voyageoflife.data.local.room.AppDatabase
+import com.zhalz.voyageoflife.data.paging.StoryRemoteMediator
 import com.zhalz.voyageoflife.data.remote.ApiService
 import com.zhalz.voyageoflife.data.remote.response.ErrorResponse
 import com.zhalz.voyageoflife.data.remote.response.StoriesResponse
@@ -21,12 +23,14 @@ import retrofit2.HttpException
 import java.io.File
 import javax.inject.Inject
 
-class StoryRepositoryImpl @Inject constructor(private val apiService: ApiService) : StoryRepository {
+class StoryRepositoryImpl @Inject constructor(private val apiService: ApiService, private val database: AppDatabase) : StoryRepository {
 
     override suspend fun getPagingStories(): Flow<PagingData<StoryData>> =
+        @OptIn(ExperimentalPagingApi::class)
         Pager(
-            config = PagingConfig(pageSize = 3, initialLoadSize = 6),
-            pagingSourceFactory = { StoriesPagingSource(apiService) }
+            config = PagingConfig(pageSize = 4, initialLoadSize = 8),
+            remoteMediator = StoryRemoteMediator(apiService, database),
+            pagingSourceFactory = { database.storyDao().getStories() }
         ).flow
 
     override suspend fun getStoriesWithLocation(): ApiResult<StoriesResponse> {

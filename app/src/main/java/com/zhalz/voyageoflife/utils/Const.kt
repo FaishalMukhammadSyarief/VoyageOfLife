@@ -17,4 +17,8 @@ object Const {
         const val TOKEN_KEY = "token"
     }
 
+    object Paging {
+        const val INITIAL_PAGE_INDEX = 1
+    }
+
 }
