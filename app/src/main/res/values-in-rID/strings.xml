@@ -23,8 +23,10 @@
     <string name="already_have_an_account">Sudah punya akun?</string>
     <string name="language">Bahasa</string>
     <string name="logout">Keluar</string>
-    <string name="action_positive">Ya</string>
-    <string name="action_negative">Batal</string>
+    <string name="action_positive">YA</string>
+    <string name="action_negative">TIDAK</string>
+    <string name="action_neutral">BATAL</string>
+    <string name="retry">Ulang</string>
 
     <string name="name">Nama</string>
     <string name="email">Email</string>
@@ -43,9 +45,10 @@
 
     <string name="placeholder_name">Faishal</string>
     <string name="placeholder_date">26 Oktober 2006</string>
-    <string name="retry">Ulang</string>
-    <string name="style_error">Error occured</string>
-    <string name="maps">Maps</string>
-
+    <string name="style_error">Terjadi error</string>
+    <string name="maps">Peta</string>
+    <string name="error_location">Tidak bisa mendapat lokasi</string>
+    <string name="location">Lokasi</string>
+    <string name="msg_location">Apakah Anda ingin menambahkan Lokasi pada Cerita Anda?</string>
 
 </resources>

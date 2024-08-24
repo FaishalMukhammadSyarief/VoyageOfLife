@@ -23,8 +23,10 @@
     <string name="already_have_an_account">Already have an account?</string>
     <string name="language">Language</string>
     <string name="logout">Logout</string>
-    <string name="action_positive">Yes</string>
-    <string name="action_negative">Cancel</string>
+    <string name="action_positive">YES</string>
+    <string name="action_negative">NO</string>
+    <string name="action_neutral">CANCEL</string>
+    <string name="retry">Retry</string>
 
     <string name="name">Name</string>
     <string name="email">Email</string>
@@ -43,8 +45,10 @@
 
     <string name="placeholder_name">Faishal</string>
     <string name="placeholder_date">26 October 2006</string>
-    <string name="retry">Retry</string>
     <string name="style_error">Error occurred</string>
     <string name="maps">Maps</string>
+    <string name="error_location">Can\'t get Location</string>
+    <string name="location">Location</string>
+    <string name="msg_location">Do you want to add Location to your Story?</string>
 
 </resources>

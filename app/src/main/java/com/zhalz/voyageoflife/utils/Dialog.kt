@@ -9,7 +9,26 @@ object Dialog {
     fun Context.showDialog(
         title: String,
         message: String,
-        positiveAction: () -> Unit = {}
+        positiveAction: () -> Unit = {},
+    ) {
+        MaterialAlertDialogBuilder(this)
+            .setTitle(title)
+            .setMessage(message)
+            .setPositiveButton(R.string.action_positive) { dialog, _ ->
+                positiveAction()
+                dialog.dismiss()
+            }
+            .setNegativeButton(R.string.action_neutral) { dialog, _ ->
+                dialog.dismiss()
+            }
+            .show()
+    }
+
+    fun Context.showDialog(
+        title: String,
+        message: String,
+        positiveAction: () -> Unit = {},
+        negativeAction: () -> Unit = {},
     ) {
         MaterialAlertDialogBuilder(this)
             .setTitle(title)
@@ -19,6 +38,10 @@ object Dialog {
                 dialog.dismiss()
             }
             .setNegativeButton(R.string.action_negative) { dialog, _ ->
+                negativeAction()
+                dialog.dismiss()
+            }
+            .setNeutralButton(getString(R.string.action_neutral)) { dialog, _ ->
                 dialog.dismiss()
             }
             .show()

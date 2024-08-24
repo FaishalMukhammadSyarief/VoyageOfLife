@@ -1,5 +1,6 @@
 package com.zhalz.voyageoflife.data.repository.story
 
+import android.location.Location
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
@@ -19,6 +20,7 @@ import kotlinx.coroutines.flow.map
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import retrofit2.HttpException
@@ -47,14 +49,23 @@ class StoryRepositoryImpl @Inject constructor(private val apiService: ApiService
         }
     }
 
-    override suspend fun uploadStories(description: String, image: File): ApiResult<UploadResponse> {
+    override suspend fun uploadStories(image: File, description: String, location: Location?): ApiResult<UploadResponse> {
 
         val descriptionBody = description.toRequestBody("text/plain".toMediaType())
+
         val fileBody = image.asRequestBody("image/jpg".toMediaTypeOrNull())
         val filePart = MultipartBody.Part.createFormData("photo", image.name, fileBody)
 
+        var latBody: RequestBody? = null
+        var lonBody: RequestBody? = null
+
+        location?.let {
+            latBody = location.latitude.toString().toRequestBody("text/plain".toMediaType())
+            lonBody = location.longitude.toString().toRequestBody("text/plain".toMediaType())
+        }
+
         return try {
-            val response = apiService.uploadStory(description = descriptionBody, photo = filePart)
+            val response = apiService.uploadStory(filePart, descriptionBody, latBody, lonBody)
             ApiResult.Success(response)
         }
         catch (e: HttpException) {

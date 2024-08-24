@@ -41,8 +41,10 @@ interface ApiService {
     @Multipart
     @POST("stories")
     suspend fun uploadStory(
+        @Part photo: MultipartBody.Part,
         @Part("description") description: RequestBody,
-        @Part photo: MultipartBody.Part
+        @Part("lat") lat: RequestBody? = null,
+        @Part("lon") lon: RequestBody? = null,
     ) : UploadResponse
 
 }

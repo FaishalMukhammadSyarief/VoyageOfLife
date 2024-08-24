@@ -1,5 +1,6 @@
 package com.zhalz.voyageoflife.data.repository.story
 
+import android.location.Location
 import androidx.paging.PagingData
 import com.zhalz.voyageoflife.data.remote.response.StoriesResponse
 import com.zhalz.voyageoflife.data.remote.response.StoryData
@@ -12,6 +13,6 @@ interface StoryRepository {
 
     suspend fun getPagingStories() : Flow<PagingData<StoryData>>
     suspend fun getStoriesWithLocation(): ApiResult<StoriesResponse>
-    suspend fun uploadStories(description: String, image: File) : ApiResult<UploadResponse>
+    suspend fun uploadStories(image: File, description: String, location: Location?) : ApiResult<UploadResponse>
 
 }
