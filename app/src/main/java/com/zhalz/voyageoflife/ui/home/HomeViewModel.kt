@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.zhalz.voyageoflife.data.repository.auth.AuthRepository
 import com.zhalz.voyageoflife.data.repository.story.StoryRepository
+import com.zhalz.voyageoflife.utils.wrapEspressoIdlingResource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -14,7 +15,7 @@ class HomeViewModel @Inject constructor(private val storyRepository: StoryReposi
     suspend fun getPagingStories() = storyRepository.getPagingStories()
 
     fun clearUserCredential() = viewModelScope.launch {
-        authRepository.deleteUser()
+        wrapEspressoIdlingResource { authRepository.deleteUser() }
     }
 
 }
