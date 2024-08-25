@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.zhalz.voyageoflife.data.remote.response.LoginResponse
 import com.zhalz.voyageoflife.data.repository.auth.AuthRepository
 import com.zhalz.voyageoflife.utils.ApiResult
+import com.zhalz.voyageoflife.utils.wrapEspressoIdlingResource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
@@ -22,9 +23,11 @@ class LoginViewModel @Inject constructor(private val authRepository: AuthReposit
     val loginResponse = _loginResponse.asSharedFlow()
 
     fun login() = viewModelScope.launch {
-        _loginResponse.emit(ApiResult.Loading())
-        val result = authRepository.login(email.value.orEmpty(), password.value.orEmpty())
-        _loginResponse.emit(result)
+        wrapEspressoIdlingResource {
+            _loginResponse.emit(ApiResult.Loading())
+            val result = authRepository.login(email.value.orEmpty(), password.value.orEmpty())
+            _loginResponse.emit(result)
+        }
     }
 
 }

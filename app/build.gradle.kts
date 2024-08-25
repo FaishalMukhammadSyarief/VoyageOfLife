@@ -81,6 +81,7 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.espresso.contrib)
     androidTestImplementation(libs.androidx.espresso.intents)
+    implementation(libs.androidx.espresso.idling.resource)
 
     /*  MOCKITO  */
     testImplementation(libs.mockito.core)

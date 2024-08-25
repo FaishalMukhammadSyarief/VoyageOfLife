@@ -8,6 +8,7 @@ import com.zhalz.voyageoflife.data.remote.response.ErrorResponse
 import com.zhalz.voyageoflife.data.remote.response.LoginResponse
 import com.zhalz.voyageoflife.data.remote.response.RegisterResponse
 import com.zhalz.voyageoflife.utils.ApiResult
+import com.zhalz.voyageoflife.utils.wrapEspressoIdlingResource
 import kotlinx.coroutines.flow.first
 import retrofit2.HttpException
 import javax.inject.Inject
@@ -15,16 +16,18 @@ import javax.inject.Inject
 class AuthRepositoryImpl @Inject constructor(private val apiService: ApiService, private val dataStoreUser: DataStoreUser) : AuthRepository {
 
     override suspend fun login(email: String, password: String): ApiResult<LoginResponse> {
-        return try {
-            val response = apiService.login(email, password)
-            val token = response.data?.token
-            token?.let { dataStoreUser.setUserCredentials(it) }
-            ApiResult.Success(response)
-        }
-        catch (e: HttpException) {
-            val jsonInString = e.response()?.errorBody()?.string()
-            val errorBody = Gson().fromJson(jsonInString, ErrorResponse::class.java)
-            ApiResult.Error(errorBody.message)
+        return wrapEspressoIdlingResource {
+            try {
+                val response = apiService.login(email, password)
+                val token = response.data?.token
+                token?.let { dataStoreUser.setUserCredentials(it) }
+                ApiResult.Success(response)
+            }
+            catch (e: HttpException) {
+                val jsonInString = e.response()?.errorBody()?.string()
+                val errorBody = Gson().fromJson(jsonInString, ErrorResponse::class.java)
+                ApiResult.Error(errorBody.message)
+            }
         }
     }
 
