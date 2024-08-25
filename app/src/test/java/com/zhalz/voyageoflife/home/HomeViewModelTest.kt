@@ -1,4 +1,4 @@
-package com.zhalz.voyageoflife.ui.home
+package com.zhalz.voyageoflife.home
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.paging.AsyncPagingDataDiffer
@@ -6,11 +6,11 @@ import androidx.paging.PagingData
 import androidx.recyclerview.widget.ListUpdateCallback
 import com.zhalz.voyageoflife.utils.DataDummy
 import com.zhalz.voyageoflife.utils.MainDispatcherRule
-import com.zhalz.voyageoflife.data.paging.StoryPagingSource
 import com.zhalz.voyageoflife.data.remote.response.StoryData
 import com.zhalz.voyageoflife.data.repository.auth.AuthRepository
 import com.zhalz.voyageoflife.data.repository.story.StoryRepository
 import com.zhalz.voyageoflife.ui.adapter.StoryAdapter
+import com.zhalz.voyageoflife.ui.home.HomeViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -41,9 +41,10 @@ class HomeViewModelTest {
     private lateinit var authRepository: AuthRepository
 
     @Test
-    fun `when Get Stories Should Not Null and Return Success`() = runTest {
+    fun `when Get Stories Should Not Null and Return Data`() = runTest {
         val dummyUsers = DataDummy.generateDummyStory()
-        val data: PagingData<StoryData> = StoryPagingSource.snapshot(dummyUsers)
+        val data = PagingData.from(dummyUsers)
+
         val expectedUsers = MutableStateFlow<PagingData<StoryData>>(PagingData.empty())
         expectedUsers.emit(data)
 
@@ -67,6 +68,7 @@ class HomeViewModelTest {
     @Test
     fun `when Get Stories Empty Should Return No Data`() = runTest {
         val data: PagingData<StoryData> = PagingData.from(emptyList())
+
         val expectedUsers = MutableStateFlow<PagingData<StoryData>>(PagingData.empty())
         expectedUsers.emit(data)
 
