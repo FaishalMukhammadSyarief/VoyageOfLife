@@ -12,6 +12,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
+import androidx.paging.map
 import com.zhalz.voyageoflife.R
 import com.zhalz.voyageoflife.data.remote.response.StoryData
 import com.zhalz.voyageoflife.databinding.ActivityHomeBinding
@@ -23,6 +24,7 @@ import com.zhalz.voyageoflife.ui.upload.UploadActivity
 import com.zhalz.voyageoflife.ui.welcome.WelcomeActivity
 import com.zhalz.voyageoflife.utils.ActivityOpener.openActivity
 import com.zhalz.voyageoflife.utils.Const.Parcel.EXTRA_USER
+import com.zhalz.voyageoflife.utils.DateFormatter.formatDate
 import com.zhalz.voyageoflife.utils.Dialog.showDialog
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -73,8 +75,11 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun collectStories() = lifecycleScope.launch {
-        viewModel.getPagingStories().collect {
-            storyAdapter.submitData(it)
+        viewModel.getPagingStories().collect { pagingData ->
+            val storyData = pagingData.map {
+                it.copy(createdAt = it.createdAt?.formatDate())
+            }
+            storyAdapter.submitData(storyData)
             binding.swipeRefresh.isRefreshing = false
         }
     }
