@@ -18,6 +18,7 @@
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/smooth"
         android:fitsSystemWindows="true"
         tools:context=".ui.detail.DetailActivity">
 

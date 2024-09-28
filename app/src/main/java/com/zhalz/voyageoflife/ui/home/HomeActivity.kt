@@ -52,8 +52,9 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun initUI() {
-        binding.toolbar.overflowIcon?.setTint(getColor(R.color.gold))
+//        window.statusBarColor = getColor(R.color.blue)
 
+        binding.toolbar.overflowIcon?.setTint(getColor(R.color.gold))
         binding.toolbar.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.action_logout -> showDialog(getString(R.string.logout), getString(R.string.msg_logout)) { logout() }
