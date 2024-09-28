@@ -4,11 +4,14 @@
     <color name="white">#FFFFFFFF</color>
 
     <!--  Brand Color  -->
-    <color name="green">#447c74</color>
+    <color name="blue">#2b4653</color>
+    <color name="gold">#d8bf9f</color>
+    <color name="smooth">#f9f6f2</color>
 
     <!--  Transparent Color  -->
     <color name="transparent">#00FFFFFF</color>
-    <color name="blurry">#BF272727</color>
+    <color name="blurry">#80272727</color>
+    <color name="semi_transparent_blue">#BF2B4653</color>
     <color name="semi_transparent_black">#80000000</color>
     <color name="semi_transparent_white">#80FFFFFF</color>
 

@@ -29,9 +29,9 @@
                 android:layout_height="match_parent"
                 android:contentDescription="@string/cd_image_story"
                 android:scaleType="centerCrop"
-                tools:src="@drawable/deer"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:shapeAppearance="@style/SlightlyRoundCorner" />
+                app:shapeAppearance="@style/SmallRoundCorner"
+                tools:src="@drawable/boat_logo" />
 
             <TextView
                 android:id="@+id/tv_item_name"
@@ -39,12 +39,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="12sp"
-                android:gravity="start"
-                android:text="@{data.name}"
-                android:textColor="@color/white"
                 android:background="@drawable/bg_round_corner"
-                android:paddingVertical="4dp"
+                android:gravity="start"
                 android:paddingHorizontal="8dp"
+                android:paddingVertical="4dp"
+                android:text="@{data.name}"
+                android:textColor="@color/smooth"
                 android:textSize="11sp"
 
                 app:layout_constraintStart_toStartOf="parent"
@@ -55,8 +55,8 @@
                 android:id="@+id/tv_item_description"
                 style="@style/TextDescription"
                 android:layout_width="0dp"
-                android:layout_marginTop="4dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
                 android:layout_marginEnd="16dp"
                 android:ellipsize="end"
                 android:gravity="start"

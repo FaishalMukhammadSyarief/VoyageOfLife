@@ -41,7 +41,8 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun playAnimation() = AnimatorSet().apply {
         playSequentially(
-            fadeAnim(binding.edRegisterName, 300),
+            fadeAnim(binding.tvTitle, 300),
+            fadeAnim(binding.edRegisterName, 250),
             fadeAnim(binding.edlRegisterName, 250),
             fadeAnim(binding.edRegisterEmail, 250),
             fadeAnim(binding.edlRegisterEmail, 250),

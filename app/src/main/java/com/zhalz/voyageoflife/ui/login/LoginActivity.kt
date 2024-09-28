@@ -42,7 +42,8 @@ class LoginActivity : AppCompatActivity() {
 
     private fun playAnimation() = AnimatorSet().apply {
         playSequentially(
-            fadeAnim(binding.edLoginEmail, 300),
+            fadeAnim(binding.tvTitle, 300),
+            fadeAnim(binding.edLoginEmail, 250),
             fadeAnim(binding.edlLoginEmail, 250),
             fadeAnim(binding.edLoginPassword, 250),
             fadeAnim(binding.edlLoginPassword, 250),

@@ -22,25 +22,28 @@
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/smooth"
+        android:fitsSystemWindows="true"
         tools:context=".ui.setting.SettingActivity">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appbar_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_margin="14dp"
+            android:background="@drawable/bg_round_corner"
+            android:backgroundTint="@color/blue">
 
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:paddingEnd="16dp"
-                app:layout_scrollFlags="scroll|enterAlwaysCollapsed|enterAlways"
+                app:layout_scrollFlags="scroll|enterAlwaysCollapsed|enterAlways|snap"
+                app:menu="@menu/menu_home"
                 app:title="@string/app_name"
                 app:titleCentered="true"
-                app:menu="@menu/menu_home"
                 app:titleTextAppearance="@style/TextTitle.ToolbarTitle"
-                app:titleTextColor="@color/black"
-                tools:ignore="RtlSymmetry" />
+                app:titleTextColor="@color/gold" />
         </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -53,8 +56,8 @@
                 android:id="@+id/rv_stories"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
                 android:adapter="@{adapter}"
+                android:orientation="vertical"
                 android:padding="8dp"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:spanCount="1"
@@ -64,14 +67,14 @@
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/green"
-            android:onClick="@{() -> activity.startActivity(upload)}"
-            android:src="@drawable/ic_add"
-            android:contentDescription="@string/cd_add_story"
-            app:maxImageSize="32dp"
             android:layout_gravity="bottom|end"
             android:layout_margin="12dp"
-            app:tint="@color/white" />
+            android:backgroundTint="@color/blue"
+            android:contentDescription="@string/cd_add_story"
+            android:onClick="@{() -> activity.startActivity(upload)}"
+            android:src="@drawable/ic_add"
+            app:maxImageSize="32dp"
+            app:tint="@color/smooth" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

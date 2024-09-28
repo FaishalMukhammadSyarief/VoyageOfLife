@@ -17,8 +17,8 @@
     <string name="register">Register</string>
     <string name="or_create_account">Or Create Account</string>
     <string name="msg_welcome">Known the tales of other\'s voyage through life.</string>
-    <string name="welcome_back">Welcome \nBack!</string>
-    <string name="create_account">Create \nAccount</string>
+    <string name="welcome_back">Welcome Back</string>
+    <string name="create_account">Create Account</string>
     <string name="doesnt_have_an_account">Doesn\'t have an account?</string>
     <string name="already_have_an_account">Already have an account?</string>
     <string name="language">Language</string>

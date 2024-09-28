@@ -17,8 +17,8 @@
     <string name="register">Daftar</string>
     <string name="or_create_account">Atau Buat Akun</string>
     <string name="msg_welcome">Ketahui kisah perjalanan hidup orang lain.</string>
-    <string name="welcome_back">Selamat \nDatang Kembali!</string>
-    <string name="create_account">Buat \nAkun</string>
+    <string name="welcome_back">Selamat Datang Kembali</string>
+    <string name="create_account">Buat Akun</string>
     <string name="doesnt_have_an_account">Belum punya akun?</string>
     <string name="already_have_an_account">Sudah punya akun?</string>
     <string name="language">Bahasa</string>

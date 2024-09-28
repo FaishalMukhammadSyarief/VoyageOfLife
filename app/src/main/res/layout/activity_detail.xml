@@ -43,7 +43,7 @@
                     android:scaleType="centerCrop"
                     app:layout_collapseMode="none"
                     app:shapeAppearance="@style/RoundBottomCorner"
-                    tools:src="@drawable/deer" />
+                    tools:src="@drawable/boat_sea" />
 
                 <com.google.android.material.appbar.MaterialToolbar
                     android:id="@+id/toolbar"
@@ -88,10 +88,10 @@
             android:maxLength="15"
             android:text="@{storyData.name}"
             android:textAppearance="@style/TextTitle.FabTitle"
-            android:textColor="@color/green"
+            android:textColor="@color/blue"
             app:icon="@drawable/ic_circular_user"
             app:iconSize="28dp"
-            app:iconTint="@color/green"
+            app:iconTint="@color/blue"
             app:layout_anchor="@id/app_bar_layout"
             app:layout_anchorGravity="center|bottom"
             app:shapeAppearance="@style/RoundCorner"
